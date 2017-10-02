@@ -5,11 +5,11 @@
 
 <html> 
     <head>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">        
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <!-- Material desing-->
         <link rel="stylesheet" href="css/material.min.css">
@@ -17,44 +17,85 @@
         <!-- Material desing-->
         <title>The Calendar Compose</title>
     </head> 
+ 
         <body>
-            <!-- Simple header with fixed tabs. -->
-            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-               
-                <header class="mdl-layout__header">
-                    <div class="mdl-layout__header-row">
-                        <!-- Title -->
-                        <span class="mdl-layout-title">The Calendar Compose</span>
-                    </div>
-                    <!-- Tabs -->
-                    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                        <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><i class="material-icons md-36">explore</i></a>
-                        <a href="#fixed-tab-2" class="mdl-layout__tab"> <i class="material-icons md-36">event</i></a>
-                        <a href="#fixed-tab-3" class="mdl-layout__tab"><i class="material-icons md-36">room_service</i></a>
-                    </div>
-                </header>
+<!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
+            <div class="hidden">
+                <!-- Simple header with fixed tabs. -->
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+                    <header class="mdl-layout__header">
+                        <div class="mdl-layout__header-row">
+                            <!-- Title -->
+                            <span class="mdl-layout-title">The Calendar Compose</span>
+                        </div>
+                        <!-- Tabs -->
+                        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                            <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><i class="material-icons md-36">explore</i></a>
+                            <a href="#fixed-tab-2" class="mdl-layout__tab"> <i class="material-icons md-36">event</i></a>
+                            <a href="#fixed-tab-3" class="mdl-layout__tab"><i class="material-icons md-36">room_service</i></a>
+                            <a href="#fixed-tab-4" class="mdl-layout__tab"><i class="material-icons md-36">account_circle</i></a>
+                        </div>
+                    </header>
 
-                <div class="mdl-layout__drawer">
-                    <span class="mdl-layout-title">(Nome de Usuairo)</span>
+                    <main class="mdl-layout__content">
+                        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                            <div class="page-content"><!-- conteudo vai aqui--></div>
+                        </section>
+                        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                            <div class="page-content"><!-- Your content goes here --></div>
+                        </section>
+                        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                            <div class="page-content"><!-- Your content goes here --></div>
+                        </section>
+                    </main>
                 </div>
-                <main class="mdl-layout__content">
-                    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-                        <div class="page-content"><!-- Your content goes here --></div>
-                    </section>
-                    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-                        <div class="page-content"><!-- Your content goes here --></div>
-                    </section>
-                    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-                        <div class="page-content"><!-- Your content goes here --></div>
-                    </section>
-                </main>
-            </div>
+            </div><!-- hidden div-->
 
+<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
+            <div class="entrar-form">
+                <div id="tela-login" class="Page">
+                    <form name="login" onsubmit="Login();">
+                        <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+                                    <input class="mdl-textfield__input logForm" type="text" id="user">
+                                    <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
+                                </div>
+                            </div>
+
+
+                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
+                                    <input class="mdl-textfield__input logForm" type="password" id="pass">
+                                    <label class="mdl-textfield__label" for="pass">Senha</label>
+                                </div>
+                            </div>
+
+
+                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
+                            </div>
+
+                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
+                            </div>
+
+                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
+                            </div>
+
+                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Esqueci a Senha</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+<!--Form cadastro-->
 
         <script type="text/javascript" src="cordova.js"></script>
         <!-- Material desing-->
         <script src="scripts/material.min.js"></script>
-        <!-- Material desing-->
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
         <script type="text/javascript" src="scripts/index.js"></script>
     </body>
