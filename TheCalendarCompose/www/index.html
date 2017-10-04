@@ -20,7 +20,7 @@
  
         <body>
 <!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
-            <div class="hidden">
+            <div class="">
                 <!-- Simple header with fixed tabs. -->
                 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
                     <header class="mdl-layout__header">
@@ -47,50 +47,55 @@
                         <section class="mdl-layout__tab-panel" id="fixed-tab-3">
                             <div class="page-content"><!-- Your content goes here --></div>
                         </section>
+                        <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+                            <div class="page-content">
+<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
+                                            <div class="entrar-form">
+                                                <div id="tela-login" class="Page">
+                                                    <form name="login" onsubmit="Login();">
+                                                        <div class="mdl-grid">
+                                                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+                                                                    <input class="mdl-textfield__input logForm" type="text" id="user">
+                                                                    <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
+                                                                    <input class="mdl-textfield__input logForm" type="password" id="pass">
+                                                                    <label class="mdl-textfield__label" for="pass">Senha</label>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
+                                                            </div>
+
+                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
+                                                            </div>
+
+                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
+                                                            </div>
+
+                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Esqueci a Senha</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                            </div><!--Conteudo 4 div-->
+                        </section>
                     </main>
                 </div>
             </div><!-- hidden div-->
 
-<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
-            <div class="entrar-form">
-                <div id="tela-login" class="Page">
-                    <form name="login" onsubmit="Login();">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
-                                    <input class="mdl-textfield__input logForm" type="text" id="user">
-                                    <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
-                                </div>
-                            </div>
 
-
-                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
-                                    <input class="mdl-textfield__input logForm" type="password" id="pass">
-                                    <label class="mdl-textfield__label" for="pass">Senha</label>
-                                </div>
-                            </div>
-
-
-                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
-                            </div>
-
-                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
-                            </div>
-
-                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
-                            </div>
-
-                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Esqueci a Senha</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
 <!--Form cadastro-->
 
         <script type="text/javascript" src="cordova.js"></script>
