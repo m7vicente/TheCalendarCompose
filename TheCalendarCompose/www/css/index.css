@@ -13,9 +13,9 @@
     overflow: auto;
 }
 
-.mdl-cell{
-    background-color:#BBB;
-    height:50px;
+.mdl-cell {
+    background-color: #BBB;
+    height: 50px;
 }
 
 
@@ -35,4 +35,7 @@
 }
 .btnEsqueci {
     width: 100%;
+}
+.btnCadastro{
+    width:100%;
 }

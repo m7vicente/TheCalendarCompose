@@ -6,7 +6,7 @@
 <html> 
     <head>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />        
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -17,91 +17,243 @@
         <!-- Material desing-->
         <title>The Calendar Compose</title>
     </head> 
- 
-        <body>
-<!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
-            <div class="">
-                <!-- Simple header with fixed tabs. -->
-                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-                    <header class="mdl-layout__header">
-                        <div class="mdl-layout__header-row">
-                            <!-- Title -->
-                            <span class="mdl-layout-title">The Calendar Compose</span>
-                        </div>
-                        <!-- Tabs -->
-                        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                            <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><i class="material-icons md-36">explore</i></a>
-                            <a href="#fixed-tab-2" class="mdl-layout__tab"> <i class="material-icons md-36">event</i></a>
-                            <a href="#fixed-tab-3" class="mdl-layout__tab"><i class="material-icons md-36">room_service</i></a>
-                            <a href="#fixed-tab-4" class="mdl-layout__tab"><i class="material-icons md-36">account_circle</i></a>
-                        </div>
-                    </header>
-
-                    <main class="mdl-layout__content">
-                        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-                            <div class="page-content"><!-- conteudo vai aqui--></div>
-                        </section>
-                        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-                            <div class="page-content"><!-- Your content goes here --></div>
-                        </section>
-                        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-                            <div class="page-content"><!-- Your content goes here --></div>
-                        </section>
-                        <section class="mdl-layout__tab-panel" id="fixed-tab-4">
-                            <div class="page-content">
-<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
-                                            <div class="entrar-form">
-                                                <div id="tela-login" class="Page">
-                                                    <form name="login" onsubmit="Login();">
-                                                        <div class="mdl-grid">
-                                                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
-                                                                    <input class="mdl-textfield__input logForm" type="text" id="user">
-                                                                    <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
-                                                                </div>
-                                                            </div>
+    <body>
 
 
-                                                            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
-                                                                    <input class="mdl-textfield__input logForm" type="password" id="pass">
-                                                                    <label class="mdl-textfield__label" for="pass">Senha</label>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
-                                                            </div>
-
-                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
-                                                            </div>
-
-                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
-                                                            </div>
-
-                                                            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Esqueci a Senha</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                            </div><!--Conteudo 4 div-->
-                        </section>
-                    </main>
+    <!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
+    <div class="">
+        <!-- Simple header with fixed tabs. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">The Calendar Compose</span>
                 </div>
-            </div><!-- hidden div-->
+                <!-- Tabs -->
+                <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                    <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><i class="material-icons md-36">explore</i></a>
+                    <a href="#fixed-tab-2" class="mdl-layout__tab"> <i class="material-icons md-36">event</i></a>
+                    <a href="#fixed-tab-3" class="mdl-layout__tab"><i class="material-icons md-36">room_service</i></a>
+                    <a href="#fixed-tab-4" class="mdl-layout__tab"><i class="material-icons md-36">account_circle</i></a>
+                </div>
+            </header>
+
+            <main class="mdl-layout__content">
+                <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                    <div class="page-content"><!-- conteudo vai aqui--></div>
+                </section>
+                <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                    <div class="page-content"><!-- Your content goes here --></div>
+                </section>
+                <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                    <div class="page-content"><!-- Your content goes here --></div>
+                </section>
+                <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+                    <div class="page-content">
+<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
+                        <div class="entrar-form">
+                            <div id="tela-login" class="Page">
+                                <form name="login" onsubmit="Login();">
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+                                                <input class="mdl-textfield__input logForm" type="text" id="user">
+                                                <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
+                                            </div>
+                                        </div>
 
 
-<!--Form cadastro-->
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
+                                                <input class="mdl-textfield__input logForm" type="password" id="pass">
+                                                <label class="mdl-textfield__label" for="pass">Senha</label>
+                                            </div>
+                                        </div>
 
-        <script type="text/javascript" src="cordova.js"></script>
-        <!-- Material desing-->
-        <script src="scripts/material.min.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+
+                                        <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Recuperar</button>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnNovoUsuario">Cadastrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+<!-----------------------------------------------------------Form cadastro-------------------------------------------------------->
+                        <div class="cadastro-form">
+                            <div id="tela-cadastro" class="page hidden">
+                                <form name="CadastroUsuario">
+                                    <div class="mdl-grid">
+
+
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" id="NomeUsuario">
+                                                <label class="mdl-textfield__label" for="NomeUsuario">Nome de Usuario</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="password" id="SenhaUsuario" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                                <label class="mdl-textfield__label" for="SenhaUsuario">Senha</label>
+                                                <span class="mdl-textfield__error">Senha deve ter no minimo 8 digitos e conter caracteres especiais </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="password" id="SenhaUsuarioConfirma">
+                                                <label class="mdl-textfield__label" for="SenhaUsuarioConfirma">Confirmação de Senha</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feminino">
+                                                <input checked class="mdl-radio__button" id="feminino" name="sexoUsuario" data-sexo="F" type="radio" value="on">
+                                                <span class="mdl-radio__label">Feminino</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="masculino">
+                                                <input class="mdl-radio__button" id="masculino" name="sexoUsuario" data-sexo="M" type="radio" value="off">
+                                                <span class="mdl-radio__label">Maculino</span>
+                                            </label>
+
+                                        </div>
+
+
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="date" id="nascimentoUsuario">
+                                                <label class="mdl-textfield__label" for="nascimentoUsuario">Aniversario</label>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" id="NomeCompleto">
+                                                <label class="mdl-textfield__label" for="NomeCompleto">Nome Completo</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" id="EmailUsuario" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                                <label class="mdl-textfield__label" for="EmailUsuario">Email</label>
+                                                <span class="mdl-textfield__error">Insira um Email valido  "email@provedor.com"</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" id="CelularUsuario">
+                                                <label class="mdl-textfield__label" for="CelularUsuario">Celular</label>
+                                                <span class="mdl-textfield__error">Insira o numero do celular corretamento (XX) XXXXX-XXXX</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Campo de escrever o endereço-->
+                                        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="Text" id="RuaUsuario">
+                                                <label class="mdl-textfield__label" for="RuaUsuario">Endereço</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Campo de selecionar estado-->
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                                <input class="mdl-textfield__input" type="text" id="estado" value="" readonly tabIndex="-1">
+
+                                                <label for="estado" class="mdl-textfield__label">Estado</label>
+                                                <ul for="estado" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                                    <li class="mdl-menu__item" data-val="AC">Acre</li>
+                                                    <li class="mdl-menu__item" data-val="AL">Alagoas</li>
+                                                    <li class="mdl-menu__item" data-val="AP">Amapá</li>
+                                                    <li class="mdl-menu__item" data-val="AM">Amazonas</li>
+                                                    <li class="mdl-menu__item" data-val="BA">Bahia</li>
+                                                    <li class="mdl-menu__item" data-val="CE">Ceará</li>
+                                                    <li class="mdl-menu__item" data-val="DF">Distrito Federal</li>
+                                                    <li class="mdl-menu__item" data-val="ES">Espírito Santo</li>
+                                                    <li class="mdl-menu__item" data-val="GO">Goiás</li>
+                                                    <li class="mdl-menu__item" data-val="MA">Maranhão</li>
+                                                    <li class="mdl-menu__item" data-val="MT">Mato Grosso</li>
+                                                    <li class="mdl-menu__item" data-val="MS">Mato Grosso do Sul</li>
+                                                    <li class="mdl-menu__item" data-val="MG">Minas Gerais</li>
+                                                    <li class="mdl-menu__item" data-val="PA">Pará</li>
+                                                    <li class="mdl-menu__item" data-val="PB">Paraíba</li>
+                                                    <li class="mdl-menu__item" data-val="PR">Paraná</li>
+                                                    <li class="mdl-menu__item" data-val="PE">Pernambuco</li>
+                                                    <li class="mdl-menu__item" data-val="PI">Piauí</li>
+                                                    <li class="mdl-menu__item" data-val="RJ">Rio de Janeiro</li>
+                                                    <li class="mdl-menu__item" data-val="RN">Rio de Janeiro</li>
+                                                    <li class="mdl-menu__item" data-val="RS">Rio Grande do Sul</li>
+                                                    <li class="mdl-menu__item" data-val="RO">Rondônia</li>
+                                                    <li class="mdl-menu__item" data-val="RR">Roraima</li>
+                                                    <li class="mdl-menu__item" data-val="SC">Santa Catarina</li>
+                                                    <li class="mdl-menu__item" data-val="SP">São Paulo</li>
+                                                    <li class="mdl-menu__item" data-val="SE">Sergipe</li>
+                                                    <li class="mdl-menu__item" data-val="TO">Tocantins</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" id="CidadeUsuario">
+                                                <label class="mdl-textfield__label" for="CidadeUsuario">Cidade</label>
+                                            </div>
+                                        </div>
+                                        <!-- Campo de escrever a cidade-->
+                                        <div class="mdl-cell mdl-cell-4-col-phone mdl-cell--8-col-tablet">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                                <input class="mdl-textfield__input" type="text" pattern="\d{5}-?\d{3}" id="CepUsuario">
+                                                <label class="mdl-textfield__label" for="CepUsuario">CEP</label>
+                                                <span class="mdl-textfield__error">Insira o CEP com o traço</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdl-cell mdl-cell-4-col-phone mdl-cell--8-col-tablet">
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnCadastro">Cadastrar</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div><!--Conteudo 4 div-->
+                </section>
+            </main>
+        </div>
+    </div><!-- hidden div-->
+    <!-- Material desing-->
+    <script src="scripts/material.min.js"></script>
+    <script src="scripts/getmdl-select.js"></script>
+    <!--  Fim Material  -->
+    <link rel="stylesheet" href="css/getmdl-select.scss" />
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="scripts/validacao.js"></script>
+</body>
 </html>
