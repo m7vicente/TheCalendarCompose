@@ -16,7 +16,7 @@
 
 .mdl-cell {
     background-color: #BBB;
-    height: 50px;
+    height: 500%;
 }
 
 .mdl-textfield {
@@ -43,10 +43,6 @@
     width:100%;
 }
 
-.pp {
-   width:20%;
-   height:20%;
-}
 
 .formulario{
     position:fixed;
@@ -57,4 +53,28 @@
 }
 .btnCancelar{
     width:100%;
+}
+
+
+.demo-card-image.mdl-card {
+    margin-top:1%;
+    width: 100%;
+    height: 20%;
+    background: url('../images/loginBack.jpg') center / cover;
+}
+
+.demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+.pp {
+    width: 20%;
+    height: 20%;
 }
