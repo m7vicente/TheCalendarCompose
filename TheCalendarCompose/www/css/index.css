@@ -19,8 +19,6 @@
     height: 50px;
 }
 
-
-
 .mdl-textfield {
     width: 100%;
 }
@@ -38,5 +36,25 @@
     width: 100%;
 }
 .btnCadastro{
+    width:100%;
+}
+
+.servicoCard > .mdl-card{
+    width:100%;
+}
+
+.pp {
+   width:20%;
+   height:20%;
+}
+
+.formulario{
+    position:fixed;
+    width:80%;
+    height:80%;
+    background-color:black;
+    
+}
+.btnCancelar{
     width:100%;
 }

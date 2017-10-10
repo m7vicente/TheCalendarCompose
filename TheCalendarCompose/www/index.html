@@ -40,10 +40,99 @@
 
             <main class="mdl-layout__content">
                 <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-                    <div class="page-content"><!-- conteudo vai aqui--></div>
+                    <div class="page-content">
+                        
+                        <div class="catalogo catalogo-agendamento page page-active" id="servicos">
+        
+                            <div class="mdl-grid">
+
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+                                    <div class="servicoCard">
+                                        <div class="mdl-card mdl-shadow--2dp">
+                                            <img class="pp" src="images/icon-96-xhdpi - Copia.png" />
+                                            <div class="mdl-card__title">
+                                                <h2 class="mdl-card__title-text">Nome do Servico</h2>
+                                            </div>
+                                            <div class="mdl-card__supporting-text">
+                                                <div class="servicoCard-descricao"></div>teste. testes testinho...
+                                            </div>
+                                            <div class="mdl-card__actions mdl-card--border">
+
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">collections</i> Imagens
+                                                </button>
+
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i id="iconDetalhes" class="material-icons">details</i> Detalhes
+                                                </button>
+
+
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page="#form-agendar" name="btnAgendar">
+                                                    <i class="material-icons">check_circle</i> Agendar
+                                                </button>
+
+
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">email</i> Messagem
+                                                </button>
+
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">comment</i> Comentarios
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!------------------------------------------------ tela de form de agendamento------------------------------------------------->                        
+                        <div id="form-agendar" class="page">
+                            <div class="agendar-form">
+                                <div class="mdl-grid">
+                                    <!-- Nome do Consumidor que ira ultilizar a reserva-->
+                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                            <input class="mdl-textfield__input " type="text" id="NomeConsumidor">
+                                            <label class="mdl-textfield__label" for="NomeConsumidor">Nome para Reserva</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- RG para a reserva-->
+                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                            <input class="mdl-textfield__input" type="text" id="identidade">
+                                            <label class="mdl-textfield__label" for="identidade">RG ou CPF</label>
+                                        </div>
+                                    </div>
+
+                                    <!--Data da reserva-->
+                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                            <input class="mdl-textfield__input" type="datetime-local" id="dataReserva">
+                                            <label class="mdl-textfield__label" for="dataReserva">Dia da Reserva</label>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" dt-page='#agendarServico' name="btnAgendarServico">AGENDAR</button>
+                                    </div>
+
+                                    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-page='#servicos' name="btnCancelarCadastro">CANCELAR</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        </div><!--Fim da Div explorar-->
                 </section>
                 <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-                    <div class="page-content"><!-- Your content goes here --></div>
+                    <div class="page-content"><!--Conteudo vai aqui--></div>
                 </section>
                 <section class="mdl-layout__tab-panel" id="fixed-tab-3">
                     <div class="page-content"><!-- Your content goes here --></div>
@@ -55,7 +144,7 @@
                             <div class="entrar-form">
                                 <div class="mdl-grid">
                                     <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%;">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
                                             <input class="mdl-textfield__input logForm" type="text" id="user">
                                             <label class="mdl-textfield__label" for="user">Nome de Usuario</label>
                                         </div>
@@ -63,7 +152,7 @@
 
 
                                     <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label " style="width:100%;">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
                                             <input class="mdl-textfield__input logForm" type="password" id="pass">
                                             <label class="mdl-textfield__label" for="pass">Senha</label>
                                         </div>
@@ -87,7 +176,7 @@
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro targetPage" dt-page='#tela-cadastro' name="btnNovoUsuario">Cadastrar</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro targetPage" dt-page='#tela-cadastro' name="btnCadastro">Novo Usuario</button>
                                     </div>
                                 </div>
                             </div>
@@ -233,12 +322,18 @@
 
                                     <!-- Campo enviar Info-->
                                     <div class="mdl-cell mdl-cell-4-col-phone mdl-cell--8-col-tablet">
-                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnCadastro">Cadastrar</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnCadastro">CADASTRAR</button>
                                     </div>
+
+
+                                    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-page='#tela-login' name="btnCancelarCadastro">CANCELAR</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-<!-------------------------------------------------------------------------------- Fim do Form de cadastro----------------------------------------------------------------------------------------->
+
 
                     </div><!--Conteudo 4 div-->
                 </section>
