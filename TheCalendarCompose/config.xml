@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp366b8a" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="pt-BR">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp366b8a" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="pt-BR" android-versionCode="">
   <name>TheCalendarCompose</name>
   <description>Trabalho de Conclusão de curso para tecnico em informatica pela Etec da Zana Leste</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Matheus Vicente</author>
@@ -9,7 +9,7 @@
   <engine name="ios" spec="4.2.0" />
   <engine name="windows" spec="4.4.2" />
   <content src="index.html" />
-  <access origin="*" />
+  <access origin="THECALENDARCOMPOSE.COM.BR" />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="10.0" />
   <!-- Support for Cordova 5.0.0 plugin system -->
@@ -103,4 +103,10 @@
     <splash src="res/screens/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
     <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
+  <preference name="Orientation" value="portrait" />
+  <access origin="THECALENDAR.KINGHOST.NET" />
+  <access />
+  <preference name="android-minSdkVersion" value="23" />
+  <preference name="android-targetSdkVersion" value="23" />
+  <preference name="android-maxSdkVersion" value="25" />
 </widget>
