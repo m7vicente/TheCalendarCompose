@@ -43,6 +43,10 @@
     width:100%;
 }
 
+.btnRetornar{
+    float:right;
+}
+
 
 .formulario{
     position:fixed;
@@ -77,4 +81,8 @@
 .pp {
     width: 20%;
     height: 20%;
+}
+
+#Valores_detalhes{
+    width:100%;
 }

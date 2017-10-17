@@ -42,7 +42,7 @@
                 <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                     <div class="page-content">
                         
-                        <div class="catalogo catalogo-agendamento page page-active" id="servicos">
+                        <div class="catalogo catalogo-agendamento page" id="servicos">
         
                             <div class="mdl-grid">
 
@@ -62,7 +62,7 @@
                                                     <i class="material-icons">collections</i> Imagens
                                                 </button>
 
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page='#tela-detalhes' name="btnDetalhes">
                                                     <i id="iconDetalhes" class="material-icons">details</i> Detalhes
                                                 </button>
 
@@ -133,7 +133,7 @@
                           
                                 <div class="mdl-grid">
                                     <div class="mdl-cell mdl-cell--1-col">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored targetPage" dt-page='#servicos' ">
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored targetPage" dt-page='#servicos'>
                                             <i class="material-icons">arrow_back</i>
                                         </button>
                                     </div>
@@ -151,7 +151,45 @@
                                 </div>
                             </div>
                         </div>
-                        
+  <!-- ------------------------------------------------------tela de detalhes-------------------------------------------------->
+                        <div id="tela-detalhes" class="page page-active">
+                            <div class="detalha-Servicos">
+                              
+                                    <h3>Detalhes</h3>
+                                
+                                    <table class="mdl-data-table mdl-js-data-table" id="Valores_detalhes">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td href="" class="mdl-data-table__cell--non-numeric">Emprendedor:     </td>
+                                                <td class="mdl-data-table__cell--non-numeric">\nomeEmprededor\</td>
+                                            </tr>
+                                            <tr>
+                                                <td href="" class="mdl-data-table__cell--non-numeric">Serviço:    </td>
+                                                <td class="mdl-data-table__cell--non-numeric">\nomeServico\</tr>
+                                            <tr>
+                                                <td href="" class="mdl-data-table__cell--non-numeric">Categoria: </td>
+                                                <td class="mdl-data-table__cell--non-numeric">\nomeCategoria\ </td>
+  
+                                            </tr>
+                                            <tr>
+                                                <td href="" class="mdl-data-table__cell--non-numeric">Valor: </td>
+                                                <td class="mdl-data-table__cell--non-numeric">\nomeValor\ </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Toast</button>
+                                <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+                                    <div class="mdl-snackbar__text"></div>
+                                    <button class="mdl-snackbar__action" type="button"></button>
+                                </div>
+
+                                
+                                </div>
                         
                         </div><!--Fim da Div explorar-->
                 </section>
