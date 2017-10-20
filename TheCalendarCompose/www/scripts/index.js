@@ -1,23 +1,86 @@
-﻿//Função que troca as telas
+﻿//Função que realiza troca de telas
 function alterarTela() {
     $('.targetPage').click(function () {
         var target = $(this).attr('dt-page');
         $('.page').removeClass('page-active');
         $(target).addClass('page-active');
-        alert(target);
     });
     }
 
 alterarTela();
 
-    (function () {
-            'use strict';
-        window['counter'] = 0;
-        var snackbarContainer = document.querySelector('#demo-toast-example');
-        var showToastButton = document.querySelector('#demo-show-toast');
-        showToastButton.addEventListener('click', function () {
-                'use strict';
-                var data = {message: 'Example Message # ' + ++counter };
-                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-        });
-}());
+//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
+
+//Ação do botão Cadastrar Cadastrar Usuario
+$("#EnviarCadastro").click(function inserirRegistros() {
+
+    var NovoConsumidor = {};
+
+    NovoConsumidor.nomeUsuario = $('#NomeUsuario').val();
+    NovoConsumidor.senha = $('#SenhaUsuario').val();
+    NovoConsumidor.sexo = $("#sexoUsuario").val()
+    NovoConsumidor.aniversario = $('#NascimentoUsuario').val();
+    NovoConsumidor.NomeCompleto = $('#NomeCompleto').val();
+    NovoConsumidor.Email = $('#EmailUsuario').val();
+    NovoConsumidor.telefone = $('#CelularUsuario').val();
+    NovoConsumidor.RuaUsuario = $('#RuaUsuario').val();
+    NovoConsumidor.UF = $('#estado').val();
+    NovoConsumidor.Cidade = $('#CidadeUsuario').val();
+    NovoConsumidor.Cep = $('#CepUsuario').val();
+
+
+    if (validarCadastro(NovoConsumidor) === true) {
+
+        alert(validado);
+    }
+                
+});
+
+function validarCadastro(NovoConsumidor) {
+
+    if (NovoConsumidor.nomeUsuario == '') {
+        return false;
+    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {
+        //invocar toast aqui alertando
+        return false;
+    } else if (NovoConsumidor.aniversario == null || aniversario == '') {
+        return false;
+    } else if (NovoConsumidor.NomeCompleto == '') {
+        return false;
+    } else if (NovoConsumidor.Email == '') {
+        return false;
+    } else if (NovoConsumidor.telefone == '') {
+        return false;
+    } else if (NovoConsumidor.RuaUsuario == '') {
+        return false;
+    } else if (NovoConsumidor.UF == '') {
+        return false;
+    } else if (NovoConsumidor.Cidade == '') {
+        return false;
+    } else if (NovoConsumidor.Cep == '') {
+        return false;
+    } else
+        return true;
+
+}
+
+
+//Ação do botão Entrar
+$('#RealizarLogin').click(function realizarLogin() {
+
+        alert("Login");
+ });
+
+//Ação do botão Recuperar
+$('#RecuperarSenha').click(function resetarSenha() {
+
+    alert('recuperar');
+});
+
+
+//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
+
+$('#AgendarServico').click(function agendarServico() {
+
+    alert("Realizar Agendamento");
+});

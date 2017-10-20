@@ -86,3 +86,11 @@
 #Valores_detalhes{
     width:100%;
 }
+
+/* Bug ao posicionar a o top no final*/
+.navegacaoInferiorDireito {
+    position: fixed;
+    transition: .5s ease;
+    top: 88%;
+    left: 81%;
+}

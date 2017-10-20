@@ -1,27 +1,18 @@
 ﻿<!DOCTYPE html>
-
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <html> 
     <head>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />        
+        <!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" /-->   
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <!-- Material desing-->
         <link rel="stylesheet" href="css/material.min.css">
         <link rel="stylesheet" href="css/icon.css">
-        <!-- Material desing-->
         <title>The Calendar Compose</title>
     </head> 
-    <body>
-
-
-    <!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
-    <div class="page-active">
+    <body><!-----------------------------------------------------------BODY OFFICAL APARTIR DAQUI------------------------------------------->
+      <div class="page-active">
         <!-- Simple header with fixed tabs. -->
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
             <header class="mdl-layout__header">
@@ -41,9 +32,10 @@
             <main class="mdl-layout__content">
                 <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                     <div class="page-content">
-                        
-                        <div class="catalogo catalogo-agendamento page" id="servicos">
-        
+
+                        <!------------------------------------------------Card de Catalogo------------------------------------------------------------->
+                        <div class="catalogo catalogo-agendamento page page-active" id="servicos">
+
                             <div class="mdl-grid">
 
                                 <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
@@ -85,8 +77,9 @@
                                 </div>
                             </div>
                         </div>
-<!------------------------------------------------ tela de form de agendamento------------------------------------------------->                        
-                        <div id="form-agendar" class="page">
+
+                        <!---------------------------------------- tela de form de agendamento--------------------------------------------------------->
+                        <div id="form-agendar" class="page ">
                             <div class="agendar-form">
                                 <div class="mdl-grid">
                                     <!-- Nome do Consumidor que ira ultilizar a reserva-->
@@ -112,10 +105,10 @@
                                             <label class="mdl-textfield__label" for="dataReserva">Dia da Reserva</label>
                                         </div>
                                     </div>
-                                    
+
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" dt-page='#agendarServico' name="btnAgendarServico">AGENDAR</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" id="AgendarServico" dt-page='#agendarServico' name="btnAgendarServico">AGENDAR</button>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
@@ -125,12 +118,12 @@
                                 </div>
                             </div>
                         </div>
-                 
- <!----------------------------------------------------tela de exposição de imagens-------------------------------------------->
+
+                        <!-----------------------------------------tela de exposição de imagens-------------------------------------------------------->
                         <div id="tela-exposicao" class="page">
 
                             <div class="servico-imagens">
-                          
+
                                 <div class="mdl-grid">
                                     <div class="mdl-cell mdl-cell--1-col">
                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored targetPage" dt-page='#servicos'>
@@ -151,57 +144,79 @@
                                 </div>
                             </div>
                         </div>
-  <!-- ------------------------------------------------------tela de detalhes-------------------------------------------------->
-                        <div id="tela-detalhes" class="page page-active">
+                        <!-- ----------------------------------------tela de detalhes------------------------------------------------------------------>
+                        <div id="tela-detalhes" class="page">
                             <div class="detalha-Servicos">
-                              
-                                    <h3>Detalhes</h3>
-                                
-                                    <table class="mdl-data-table mdl-js-data-table" id="Valores_detalhes">
-                                        <thead>
 
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td href="" class="mdl-data-table__cell--non-numeric">Emprendedor:     </td>
-                                                <td class="mdl-data-table__cell--non-numeric">\nomeEmprededor\</td>
-                                            </tr>
-                                            <tr>
-                                                <td href="" class="mdl-data-table__cell--non-numeric">Serviço:    </td>
-                                                <td class="mdl-data-table__cell--non-numeric">\nomeServico\</tr>
-                                            <tr>
-                                                <td href="" class="mdl-data-table__cell--non-numeric">Categoria: </td>
-                                                <td class="mdl-data-table__cell--non-numeric">\nomeCategoria\ </td>
-  
-                                            </tr>
-                                            <tr>
-                                                <td href="" class="mdl-data-table__cell--non-numeric">Valor: </td>
-                                                <td class="mdl-data-table__cell--non-numeric">\nomeValor\ </td>
+                                <h3>Detalhes</h3>
 
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <table class="mdl-data-table mdl-js-data-table" id="Valores_detalhes">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td href="" class="mdl-data-table__cell--non-numeric">Emprendedor:     </td>
+                                            <td class="mdl-data-table__cell--non-numeric">\nomeEmprededor\</td>
+                                        </tr>
+                                        <tr>
+                                            <td href="" class="mdl-data-table__cell--non-numeric">Serviço:    </td>
+                                            <td class="mdl-data-table__cell--non-numeric">\nomeServico\
+                                        </tr>
+                                        <tr>
+                                            <td href="" class="mdl-data-table__cell--non-numeric">Categoria: </td>
+                                            <td class="mdl-data-table__cell--non-numeric">\nomeCategoria\ </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td href="" class="mdl-data-table__cell--non-numeric">Valor: </td>
+                                            <td class="mdl-data-table__cell--non-numeric">\nomeValor\ </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Toast</button>
                                 <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
                                     <div class="mdl-snackbar__text"></div>
                                     <button class="mdl-snackbar__action" type="button"></button>
                                 </div>
-
-                                
-                                </div>
-                        
-                        </div><!--Fim da Div explorar-->
-                </section>
+                            </div>
+                        </div>
+                    </div> </section>
+<!-------------------------------------------Fim da 1 aba fixa----------------------------------------------------------------->
                 <section class="mdl-layout__tab-panel" id="fixed-tab-2">
                     <div class="page-content"><!--Conteudo vai aqui--></div>
                 </section>
+<!-------------------------------------------Fim da 2 aba fixa----------------------------------------------------------------->
+
                 <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-                    <div class="page-content"><!-- Your content goes here --></div>
+                    <div class="page-content">
+
+                        <div id="tela servicos"">
+                            <div class="page page-active">
+                                <div class="mdl-grid">
+                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                        <h4>Meus Servicos</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored navegacaoInferiorDireito" id="btnNovoServico" style="position:fixed;transition: .5s ease;top: 88%;left: 81%;">
+                            <i class="material-icons">add</i>
+                        </button>
+
+                    </div>
                 </section>
+<!-------------------------------------------Fim da 3 aba fixa----------------------------------------------------------------->
+
                 <section class="mdl-layout__tab-panel" id="fixed-tab-4">
                     <div class="page-content">
-<!-----------------------------------------------------------TELA DE LOGIN----------------------------------------------------->
+<!-----------------------------------------------------------TELA DE LOGIN------------------------------------------------------------->
                         <div id="tela-login" class="page page-active">
                             <div class="entrar-form">
                                 <div class="mdl-grid">
@@ -222,19 +237,11 @@
 
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" name="btnEntrar">Entrar</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnLogin" id="RealizarLogin" name="btnEntrar">Entrar</button>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnFace" name="btnFace">Facebook</button>
-                                    </div>
-
-                                    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnGoogle" name="btnGoogle">Google</button>
-                                    </div>
-
-                                    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" name="esqueci">Recuperar</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnEsqueci" id="RecuperarSenha" name="esqueci">Recuperar</button>
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
@@ -243,12 +250,14 @@
                                 </div>
                             </div>
                         </div>
-<!------------------------------------------------------------------------------------------------------------------Form cadastro---------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------TELA DE CADASTRO---------------------------------------------------------------------------------------------->
                         <div id="tela-cadastro" class="page">
 
                             <div class="cadastro-form">
 
                                 <div class="mdl-grid">
+
+                                    <div class="result"></div>
 
                                     <!--Nome de usuario-->
                                     <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
@@ -384,7 +393,7 @@
 
                                     <!-- Campo enviar Info-->
                                     <div class="mdl-cell mdl-cell-4-col-phone mdl-cell--8-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnCadastro">CADASTRAR</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" id="EnviarCadastro" name="EnviarCadastro">CADASTRAR</button>
                                     </div>
 
 
@@ -394,11 +403,14 @@
 
                                 </div>
                             </div>
+
+                            
+
                         </div>
-
-
-                    </div><!--Conteudo 4 div-->
+                    </div>
                 </section>
+<!-------------------------------------------Fim da 4 aba fixa----------------------------------------------------------------->
+
             </main>
         </div>
     </div><!-- hidden div-->
