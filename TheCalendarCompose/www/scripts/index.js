@@ -1,4 +1,4 @@
-﻿//Função que realiza troca de telas
+﻿// Função que realiza troca de telas
 function alterarTela() {
     $('.targetPage').click(function () {
         var target = $(this).attr('dt-page');
@@ -84,3 +84,56 @@ $('#AgendarServico').click(function agendarServico() {
 
     alert("Realizar Agendamento");
 });
+
+
+$('#btnNovoServico').click(onDeviceReady);
+
+
+function onDeviceReady() {
+    alert("device Ready")
+    var db = window.openDatabase("DataBase", "1.0", "TheCalendar", 2000000);
+    db.transaction(populateDB, errorDB, sucessDB);
+}
+
+function populateDB(tx) {
+    tx.executeSql('DROP TABLE IF EXISTS pessoa');
+    tx.executeSql('CREATE TABLE pessoa ( id_pessoa INTEGER PRIMARY KEY, nome)');
+    tx.executeSql('INSERT INTO pessoa (id_pessoa, nome) VALUES (1, "Ronaldo")');
+    tx.executeSql('INSERT INTO pessoa (id_pessoa, nome) VALUES (2, "Maria")');
+    tx.executeSql('INSERT INTO pessoa (id_pessoa, nome) VALUES (3, "Eduardo")');
+    alert("populate")
+}
+
+function errorDB(err) {
+    alert("erro: " + err.code);
+}
+
+function sucessDB() {
+    alert("Sucesso");
+}
+
+$('#Mostrar').click(show);
+
+function show() {
+
+    var db = window.openDatabase("DataBase", "1.0", "TheCalendar", 2000000);
+    db.transaction(mostrarRegistros, errorDB);
+    
+}
+
+function mostrarRegistros(tx) {
+    tx.executeSql('SELECT * FROM pessoa', [] ,sucess, errorDB )
+}
+
+
+
+
+function sucess(tx, results) {
+    alert("Sucesso");
+
+    var len = results.rows.length;
+    alert(len + " Linhas Encontradas");
+    for (var i = 0; i < len; i++) {
+        alert("ID: " + results.rows.item(i).id_pessoa + ";  Pesssoa: " + results.rows.item(i).nome);
+    }
+}
