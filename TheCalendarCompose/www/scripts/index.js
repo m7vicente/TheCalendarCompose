@@ -32,8 +32,8 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
     if (validarCadastro(NovoConsumidor) == true) {
-
-        alert("validado");
+        inserirUsuario(NovoConsumidor);
+        showToast("Validado");
     }
                 
 });
@@ -83,7 +83,7 @@ $('#RecuperarSenha').click(function resetarSenha() {
 
 
 //alert("connection Factory");
-//connectionFactory();
+
 
 
 
@@ -101,3 +101,5 @@ function showToast(mensagem) {
     window.plugins.toast.show(mensagem, 'long', 'center');
 
 }
+
+connectionFactory();
