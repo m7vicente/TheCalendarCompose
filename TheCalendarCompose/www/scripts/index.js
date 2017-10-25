@@ -2,7 +2,8 @@
 function alterarTela() {
     $('.targetPage').click(function () {
         var target = $(this).attr('dt-page');
-        $('.page').removeClass('page-active');
+        var atual = $(this).attr('dt-atual');
+        $(atual).removeClass('page-active');
         $(target).addClass('page-active');
     });
     }
@@ -30,12 +31,9 @@ $("#EnviarCadastro").click(function inserirRegistros() {
 
     alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
-    if (validarCadastro(NovoConsumidor) === true) {
+    if (validarCadastro(NovoConsumidor) == true) {
 
         alert("validado");
-    }
-    else {
-        showToast();
     }
                 
 });
@@ -44,9 +42,10 @@ function validarCadastro(NovoConsumidor) {
 
     if (NovoConsumidor.nomeUsuario == '') {
         return false;
-    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {      
+    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {
+        showToast("Senhas não Concidem");
         return false;
-    } else if (NovoConsumidor.aniversario == null) {
+    } else if (NovoConsumidor.aniversario == '') {
         return false;
     } else if (NovoConsumidor.NomeCompleto == '') {
         return false;

@@ -41,7 +41,7 @@
                                 <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
                                     <div class="servicoCard">
                                         <div class="mdl-card mdl-shadow--2dp">
-                                            <img class="pp" src="images/icon-96-xhdpi - Copia.png" />
+                                            
                                             <div class="mdl-card__title">
                                                 <h2 class="mdl-card__title-text">Nome do Servico</h2>
                                             </div>
@@ -50,27 +50,14 @@
                                             </div>
                                             <div class="mdl-card__actions mdl-card--border">
 
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page='#tela-exposicao' name="btnImagens">
-                                                    <i class="material-icons">collections</i> Imagens
-                                                </button>
-
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page='#tela-detalhes' name="btnDetalhes">
-                                                    <i id="iconDetalhes" class="material-icons">details</i> Detalhes
-                                                </button>
-
-
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page='#form-agendar' name="btnAgendar">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-atual='#servicos' dt-page='#form-agendar' name="btnAgendar">
                                                     <i class="material-icons">check_circle</i> Agendar
                                                 </button>
 
-
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">email</i> Messagem
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-atual='#servicos' dt-page='#tela-detalhes' name="btnDetalhes">
+                                                    <i id="iconDetalhes" class="material-icons">details</i> Detalhes
                                                 </button>
-
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">comment</i> Comentarios
-                                                </button>
+                                                                                                
                                             </div>
                                         </div>
                                     </div>
@@ -112,38 +99,13 @@
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-page='#servicos' name="btnCancelarCadastro">CANCELAR</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-atual='#form-agendar' dt-page='#servicos' name="btnCancelarCadastro">CANCELAR</button>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-
-                        <!-----------------------------------------tela de exposição de imagens-------------------------------------------------------->
-                        <div id="tela-exposicao" class="page">
-
-                            <div class="servico-imagens">
-
-                                <div class="mdl-grid">
-                                    <div class="mdl-cell mdl-cell--1-col">
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored targetPage" dt-page='#servicos'>
-                                            <i class="material-icons">arrow_back</i>
-                                        </button>
-                                    </div>
-
-                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
-                                        <div class="demo-card-image mdl-card mdl-shadow--2dp">
-                                            <div class="mdl-card__title mdl-card--expand"></div>
-                                            <div class="mdl-card__actions">
-                                                <span class="demo-card-image__filename"><div class="descricao-imagen-servico">Degustação de azeitonas</div></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
+                                    
                         <!-- ----------------------------------------tela de detalhes------------------------------------------------------------------>
                         <div id="tela-detalhes" class="page">
                             <div class="detalha-Servicos">
@@ -175,12 +137,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <button id="demo-show-toast" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Toast</button>
-                                <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-                                    <div class="mdl-snackbar__text"></div>
-                                    <button class="mdl-snackbar__action" type="button"></button>
-                                </div>
+                                                
                             </div>
                         </div>
                     </div> </section>
@@ -193,30 +150,81 @@
                 <section class="mdl-layout__tab-panel" id="fixed-tab-3">
                     <div class="page-content">
 
-                        <div id="tela servicos"">
-                            <div class="page page-active">
+                        <div id="tela_servicos" class="page page-active">
+                         
                                 <div class="mdl-grid">
                                     <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
                                         <h4>Meus Servicos</h4>
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
-
-
-                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored navegacaoInferiorDireito" id="btnNovoServico" style="position:fixed;transition: .5s ease;top: 88%;left: 81%;">
-                            <i class="material-icons">add</i>
-                        </button>
-
-
-                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored navegacaoInferiorDireito" id="Mostrar" >
-                            <i class="material-icons">add</i>
-                        </button>
-
-
+                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored navegacaoInferiorDireito targetPage" dt-atual='#tela_servicos' dt-page='#tela-cadastro-servico' id="btnNovoServico" style="position:fixed;transition: .5s ease;top: 88%;left: 81%;">
+                                    <i class="material-icons">add</i>
+                                </button> 
                     </div>
-                </section>
+
+
+
+                    <!--Tela Cadastro Servico-->
+                        <div class="page" id="tela-cadastro-servico">
+                            <div class="mdl-grid">
+                                <!--Nome do servico-->
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                        <input class="mdl-textfield__input" type="text" id="NomeNovoServico">
+                                        <label class="mdl-textfield__label" for="NomeNovoServico">Nome do Serviço</label>
+                                    </div>
+                                </div>
+
+                                <!--Valor-->
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                        <input class="mdl-textfield__input" type="number" id="ValorNovoServico" value="00.00">
+                                        <label class="mdl-textfield__label" for="ValorNovoServico">Preço R$</label>
+                                    </div>
+                                </div>
+
+                                <!--Categoria-->
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                        <input class="mdl-textfield__input" type="text" id="categoriaNovoServico">
+                                        <label class="mdl-textfield__label" for="categoriaNovoServico">Categoria</label>
+                                    </div>
+                                </div>
+
+                                <!--Descricao novo Servico-->
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--full-width">
+                                        <textarea class="mdl-textfield__input" type="text" rows="5" id="descricaoNovoServico"></textarea>
+                                        <label class="mdl-textfield__label" for="descricaoNovoServico">Descrição</label>
+                                    </div>
+                                </div>
+
+                                <!--Imagem demo-->
+
+                                <div class="mdl-cell mdl-cell--1-col-phone mdl-cell--1-col-tablet">
+                                    <Label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                                        Imagem <input type="file" name="imagemNovoServico" id="imagemNovoServico">
+                                    </Label>
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--4-col-tablet">
+                                    <div class="img-novo_Servico" id="img-novo-servico">img</div>
+                                </div>
+
+
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro" name="btnCadastroNovoServico">Adicionar</button>
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro targetPage" dt-atual='#tela-cadastro-servico' dt-page='#tela_servicos' name="btncancelarNovoServico">Cancelar</button>
+                                </div>
+
+                            </div>
+                       </div><!-- Fim tela Cadastro Servico-->
+                    </div>
+                  </section>
 <!-------------------------------------------Fim da 3 aba fixa------------------------------------------------------------------------->
 
                 <section class="mdl-layout__tab-panel" id="fixed-tab-4">
@@ -250,7 +258,7 @@
                                     </div>
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro targetPage" dt-page='#tela-cadastro' name="btnCadastro">Novo Usuario</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCadastro targetPage" dt-atual='#tela-login' dt-page='#tela-cadastro' name="btnCadastro">Novo Usuario</button>
                                     </div>
                                 </div>
                             </div>
@@ -404,7 +412,7 @@
 
 
                                     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--2-col-tablet">
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-page='#tela-login' name="btnCancelarCadastro">CANCELAR</button>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btnCancelar targetPage" dt-atual='#tela-cadastro' dt-page='#tela-login' name="btnCancelarCadastro">CANCELAR</button>
                                     </div>
 
                                 </div>
