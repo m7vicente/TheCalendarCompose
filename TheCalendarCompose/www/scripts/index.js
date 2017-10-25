@@ -81,14 +81,24 @@ $('#RecuperarSenha').click(function resetarSenha() {
 });
 
 
-//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
 
-$('#AgendarServico').click(function agendarServico() {
-
-    alert("Realizar Agendamento");
-});
 
 //alert("connection Factory");
 //connectionFactory();
 
 
+
+//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
+
+$('#AgendarServico').click(function agendarServico() {
+
+    showToast("Agendar Servico");
+  
+});
+
+
+function showToast(mensagem) {
+
+    window.plugins.toast.show(mensagem, 'long', 'center');
+
+}
