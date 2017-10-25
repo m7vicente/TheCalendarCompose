@@ -18,8 +18,8 @@ $("#EnviarCadastro").click(function inserirRegistros() {
 
     NovoConsumidor.nomeUsuario = $('#NomeUsuario').val();
     NovoConsumidor.senha = $('#SenhaUsuario').val();
-    NovoConsumidor.sexo = $("#sexoUsuario").val()
-    NovoConsumidor.aniversario = $('#NascimentoUsuario').val();
+    NovoConsumidor.sexo = $('input[name=sex-options]:checked').val();
+    NovoConsumidor.aniversario = $('#nascimentoUsuario').val();
     NovoConsumidor.NomeCompleto = $('#NomeCompleto').val();
     NovoConsumidor.Email = $('#EmailUsuario').val();
     NovoConsumidor.telefone = $('#CelularUsuario').val();
@@ -28,10 +28,14 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.Cidade = $('#CidadeUsuario').val();
     NovoConsumidor.Cep = $('#CepUsuario').val();
 
-
+    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
+    
     if (validarCadastro(NovoConsumidor) === true) {
 
-        alert(validado);
+        alert("validado");
+    }
+    else {
+        showToast();
     }
                 
 });
@@ -40,10 +44,9 @@ function validarCadastro(NovoConsumidor) {
 
     if (NovoConsumidor.nomeUsuario == '') {
         return false;
-    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {
-        //invocar toast aqui alertando
+    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {      
         return false;
-    } else if (NovoConsumidor.aniversario == null || aniversario == '') {
+    } else if (NovoConsumidor.aniversario == null) {
         return false;
     } else if (NovoConsumidor.NomeCompleto == '') {
         return false;
@@ -85,5 +88,7 @@ $('#AgendarServico').click(function agendarServico() {
     alert("Realizar Agendamento");
 });
 
-alert("connection Factory");
-connectionFactory();
+//alert("connection Factory");
+//connectionFactory();
+
+

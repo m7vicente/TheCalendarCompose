@@ -217,7 +217,7 @@
 
                     </div>
                 </section>
-<!-------------------------------------------Fim da 3 aba fixa----------------------------------------------------------------->
+<!-------------------------------------------Fim da 3 aba fixa------------------------------------------------------------------------->
 
                 <section class="mdl-layout__tab-panel" id="fixed-tab-4">
                     <div class="page-content">
@@ -255,7 +255,7 @@
                                 </div>
                             </div>
                         </div>
-<!-----------------------------------------------------------TELA DE CADASTRO---------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------TELA DE CADASTRO---------------------------------------------------------->
                         <div id="tela-cadastro" class="page">
 
                             <div class="cadastro-form">
@@ -287,14 +287,23 @@
                                         </div>
                                     </div>
 
+                                    <!--Nome Completo-->
+                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                            <input class="mdl-textfield__input" type="text" id="NomeCompleto">
+                                            <label class="mdl-textfield__label" for="NomeCompleto">Nome Completo</label>
+                                        </div>
+                                    </div>
+
                                     <!--Escolha de Sexo-->
                                     <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet">
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feminino">
-                                            <input checked class="mdl-radio__button" id="feminino" name="sexoUsuario" data-sexo="F" type="radio" value="on">
+                                        Sexo: <br />
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="sex-option-1">
+                                            <input type="radio" id="sex-option-1" class="mdl-radio__button" name="sex-options" value="Feminino">
                                             <span class="mdl-radio__label">Feminino</span>
                                         </label>
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="masculino">
-                                            <input class="mdl-radio__button" id="masculino" name="sexoUsuario" data-sexo="M" type="radio" value="off">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="sex-option-2">
+                                            <input type="radio" id="sex-option-2" class="mdl-radio__button" name="sex-options" value="Masculino">
                                             <span class="mdl-radio__label">Maculino</span>
                                         </label>
                                     </div>
@@ -304,14 +313,6 @@
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
                                             <input class="mdl-textfield__input" type="date" id="nascimentoUsuario">
                                             <label class="mdl-textfield__label" for="nascimentoUsuario">Aniversario</label>
-                                        </div>
-                                    </div>
-
-                                    <!--Nome Completo-->
-                                    <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
-                                            <input class="mdl-textfield__input" type="text" id="NomeCompleto">
-                                            <label class="mdl-textfield__label" for="NomeCompleto">Nome Completo</label>
                                         </div>
                                     </div>
 
@@ -409,8 +410,6 @@
                                 </div>
                             </div>
 
-                            
-
                         </div>
                     </div>
                 </section>
@@ -429,5 +428,7 @@
     <script type="text/javascript" src="scripts/validacao.js"></script>
     <script type="text/javascript" src="scripts/connectionFactory.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
+
+ 
    </body>
 </html>
