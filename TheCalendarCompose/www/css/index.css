@@ -94,3 +94,7 @@
     top: 88%;
     left: 81%;
 }
+
+label.input-custom-file input[type=file] {
+    display: none;
+}
