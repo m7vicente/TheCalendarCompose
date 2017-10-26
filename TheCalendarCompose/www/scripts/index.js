@@ -103,3 +103,4 @@ function showToast(mensagem) {
 }
 
 connectionFactory();
+show();
