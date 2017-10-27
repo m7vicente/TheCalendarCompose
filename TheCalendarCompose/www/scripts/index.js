@@ -70,7 +70,14 @@ function validarCadastro(NovoConsumidor) {
 //Ação do botão Entrar
 $('#RealizarLogin').click(function realizarLogin() {
 
-        alert("Login");
+    var newLogin = {};
+    newLogin.nomeUsuario = $('#user').val();
+    newLogin.senha = $('#pass').val();
+
+    if (newLogin.nomeUsuario != '' || newLogin.senha != '') {
+        login(newLogin);
+    }
+
  });
 
 //Ação do botão Recuperar

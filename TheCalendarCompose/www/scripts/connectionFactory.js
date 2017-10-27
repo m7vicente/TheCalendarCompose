@@ -8,7 +8,7 @@ function connectionFactory() {
 }
 
 function populateDB(tx) {
-    //tx.executeSql('DROP TABLE IF EXISTS tb_pessoa');
+    tx.executeSql('DROP TABLE IF EXISTS tb_pessoa');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_pessoa( id_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, nomeUsuario TEXT NOT NULL, senha TEXT NOT NULL, nome_pessoa TEXT NOT NULL, nascimento DATETIME NOT NULL, sexo TEXT NOT NULL, email TEXT, celular TEXT, endereco_rua TEXT, endereco_cidade TEXT, endereco_cep INTEGER, endereco_estado TEXT, data_cadastro DATETIME DEFALT CURRENT_TIMESTAMP)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_pessoa(id_foto_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa INTEGER, imagem_pessoa BLOB, FOREIGN KEY (fk_id_pessoa) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
@@ -47,4 +47,12 @@ function select(tx, results) {
     for (var i = 0; i < len; i++) {
         alert("ID: " + results.rows.item(i).id_pessoa + ";  Pesssoa: " + results.rows.item(i).nomeUsuario + ";  Senha: " + results.rows.item(i).senha + ";  email: " + results.rows.item(i).email + ";  Celular: " + results.rows.item(i).celular + ";  Rua: " + results.rows.item(i).endereco_rua + ";  Cidade: " + results.rows.item(i).endereco_cidade + ";  Estado: " + results.rows.item(i).endereco_estado + ";  CEP: " + results.rows.item(i).endereco_cep + ";  Data Cadastro: " + results.rows.item(i).data_cadastro);
     }
+}
+
+function login(userLogin) {
+    insertGenerics = userLogin;
+    showToast(insertGenerics.nomeUsuario + "    " + insertGenerics.senha);
+    db.transaction(function DBnoUsuario(tx) {
+        tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [insertGenerics.nomeUsuario, insertGenerics.senha], select, errorDB);
+    })
 }
