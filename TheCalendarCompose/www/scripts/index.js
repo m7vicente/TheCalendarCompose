@@ -1,9 +1,8 @@
 ﻿// Funções da aplicação
-
-
     document.addEventListener("deviceready", connectionFactory, false);
 
 
+//para carregar no navegador 
 connectionFactory();
 
 // Função que realiza troca de telas
@@ -37,16 +36,18 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.Cidade = $('#CidadeUsuario').val();
     NovoConsumidor.Cep = $('#CepUsuario').val();
 
-    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
+    //alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
         showToast("Validado");
-        show();
+        $('#tela-cadastro').removeClass('page-active');
+        $('#tela-login').addClass('page-active');
     }
                 
 });
 
+//validarCadastro: ultilizado para impedir que seja realizado cadastros sem nunhuma informação
 function validarCadastro(NovoConsumidor) {
 
     if (NovoConsumidor.nomeUsuario == '') {
@@ -72,9 +73,7 @@ function validarCadastro(NovoConsumidor) {
         return false;
     } else
         return true;
-
 }
-
 
 //Ação do botão Entrar
 $('#RealizarLogin').click(function realizarLogin() {
@@ -94,13 +93,6 @@ $('#RecuperarSenha').click(function resetarSenha() {
 
     alert('recuperar');
 });
-
-
-
-
-//alert("connection Factory");
-
-
 
 
 //IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
