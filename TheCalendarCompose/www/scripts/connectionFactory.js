@@ -9,7 +9,8 @@ function connectionFactory() {
 
 // populateDB: esta função é chamada pela connectionFactory. Ela cria as tabelas e realiza alguns inserts
 function populateDB(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS tb_pessoa( id_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, nomeUsuario TEXT NOT NULL, senha TEXT NOT NULL, nome_pessoa TEXT NOT NULL, nascimento DATETIME NOT NULL, sexo TEXT NOT NULL, email TEXT, celular TEXT, endereco_rua TEXT, endereco_cidade TEXT, endereco_cep INTEGER, endereco_estado TEXT, data_cadastro DATETIME DEFALT CURRENT_TIMESTAMP)');
+    tx.executeSql('DROP TABLE IF EXISTS tb_pessoa');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS tb_pessoa( id_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, nomeUsuario  TEXT NOT NULL UNIQUE, senha TEXT NOT NULL, nome_pessoa TEXT NOT NULL, nascimento DATETIME NOT NULL, sexo TEXT NOT NULL, email TEXT, celular TEXT, endereco_rua TEXT, endereco_cidade TEXT, endereco_cep INTEGER, endereco_estado TEXT, data_cadastro DATETIME DEFALT CURRENT_TIMESTAMP)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_pessoa(id_foto_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa INTEGER, imagem_pessoa BLOB, FOREIGN KEY (fk_id_pessoa) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_servico(id_foto_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, imagem_servico BLOB, FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico))');
@@ -53,7 +54,23 @@ function select(tx, results) {
 
 //login: ultilizado para realizar o login de um usuario no sistema.
 function login(userLogin) {
+    
     db.transaction(function dataLogin(tx) {
-        tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [userLogin.nomeUsuario, userLogin.senha], select, errorDB);
+        tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [userLogin.nomeUsuario, userLogin.senha], function select(tx, results) {         
+            UsuarioLogado.id_pessoa = results.rows.item(0).id_pessoa;
+            UsuarioLogado.nomeUsuario = results.rows.item(0).nomeUsuario;
+            UsuarioLogado.senha = results.rows.item(0).senha;
+            UsuarioLogado.nascimento = results.rows.item(0).nascimento;
+            UsuarioLogado.email = results.rows.item(0).email;
+            UsuarioLogado.celular = results.rows.item(0).celular;
+            UsuarioLogado.endereco_rua = results.rows.item(0).endereco_rua;
+            UsuarioLogado.endereco_cidade = results.rows.item(0).endereco_cidade;
+            UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
+            UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
+            UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
+                      
+        }, errorDB);
     }, errorDB);
- }
+}
+
+//inserirNovo serviço

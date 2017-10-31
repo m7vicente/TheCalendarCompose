@@ -1,5 +1,10 @@
-﻿// Funções da aplicação
-    document.addEventListener("deviceready", connectionFactory, false);
+﻿//Variaveis de usuario
+var UsuarioLogado = {};
+
+
+
+// Funções da aplicação
+   // document.addEventListener("deviceready", connectionFactory, false);
 
 
 //para carregar no navegador 
@@ -83,9 +88,8 @@ $('#RealizarLogin').click(function realizarLogin() {
     newLogin.senha = $('#pass').val();
 
     if (newLogin.nomeUsuario != '' || newLogin.senha != '') {
-        login(newLogin);
+       login(newLogin);
     }
-
  });
 
 //Ação do botão Recuperar
