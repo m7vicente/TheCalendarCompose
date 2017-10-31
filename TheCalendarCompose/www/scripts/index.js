@@ -1,4 +1,12 @@
-﻿// Função que realiza troca de telas
+﻿// Funções da aplicação
+
+
+    document.addEventListener("deviceready", connectionFactory, false);
+
+
+connectionFactory();
+
+// Função que realiza troca de telas
 function alterarTela() {
     $('.targetPage').click(function () {
         var target = $(this).attr('dt-page');
@@ -34,6 +42,7 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
         showToast("Validado");
+        show();
     }
                 
 });
@@ -108,6 +117,3 @@ function showToast(mensagem) {
     window.plugins.toast.show(mensagem, 'long', 'center');
 
 }
-
-connectionFactory();
-show();
