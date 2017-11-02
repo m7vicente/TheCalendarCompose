@@ -71,7 +71,11 @@ function login(userLogin) {
             UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
             UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
         }, errorDB);
-    }, errorDB);
+    }, function errorDB(err) {
+        if (err.code == 0) {
+            showToast("usuario ou senha incorretos ");
+        }
+    });
 }
 
 //inserirNovo serviço e sua foto

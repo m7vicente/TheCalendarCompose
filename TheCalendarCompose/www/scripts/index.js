@@ -35,7 +35,6 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
 
     if (ValidarServico(novoServico) == true) {
         adicionarServico(novoServico);
-        show();
         showToast("Adiconado com Sucesso !");
     }
 
@@ -146,7 +145,11 @@ $('#RealizarLogin').click(function realizarLogin() {
     newLogin.senha = $('#pass').val();
 
     if (newLogin.nomeUsuario != '' || newLogin.senha != '') {
-       login(newLogin);
+        login(newLogin);
+        if (UsuarioLogado.id_pessoa != 0) {
+            $('#tela-login').removeClass('page-active');
+            $('#tela-usuario-principal').addClass('page-active');
+        }
     }
  });
 
@@ -165,7 +168,14 @@ $('#AgendarServico').click(function agendarServico() {
   
 });
 
+//AO USUARIO REALIZAR O LOGIN ESTÁ TELA SERÁ CRIADA DINAMICAMENTE DE ACORDO COM AS INFORMAÇÕES DO BANCO
+$('#tela-usuario-principal').change(function criarTela() {
 
+$('#tela-usuario-principal').append("teste");
+}
+);
+
+//FUNÇÃO DE TOAST UNIVELSAL
 function showToast(mensagem) {
 
     window.plugins.toast.show(mensagem, 'long', 'center');
