@@ -24,13 +24,14 @@ alterarTela();
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
 $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     var novoServico = {};
-
+    
     novoServico.idPrestador = UsuarioLogado.id_pessoa;
     novoServico.nomeServico = $('#NomeNovoServico').val();
     novoServico.descricao_servico = $('#descricaoNovoServico').val();
     novoServico.valor_servico = $('#ValorNovoServico').val();
     novoServico.servico_ativo = true;
     novoServico.categoria = $('#categoriaNovoServico').val();
+    novoServico.imagem = document.getElementById('imagemNovoServico').files[0];
 
     if (ValidarServico(novoServico) == true) {
         adicionarServico(novoServico);
@@ -40,24 +41,6 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
 
 });
 
-
-$('#imagemNovoServico').change(function getImagefile() {
-    var arquivo = document.getElementById('imagemNovoServico').files[0];
-    var local = $('#imagemNovoServico').val();
-      
-    var img = document.createElement("img");
-    img.file = arquivo;
-    //lendo arquivo selecionado
-    document.getElementById('img-novo-servico').appendChild(img);
-    var reader = new FileReader();
-    reader.onload = (function (aImg) {
-        return function (e) {
-            aImg.src = e.target.result;
-        };
-    })(img);
-    reader.readAsDataURL(arquivo);
-
-});
 
 //Função para validar os campos do serviço a ser adicionado
 function ValidarServico(novoServico) {
@@ -78,6 +61,24 @@ function ValidarServico(novoServico) {
         return true;
     }
 }
+
+//Tratando imagem a ser pega no formulario novo serviço
+$('#imagemNovoServico').change(function getImagefile() {
+    var arquivo = document.getElementById('imagemNovoServico').files[0];
+ 
+    var img = document.createElement("img");
+    img.file = arquivo;
+    //lendo arquivo selecionado
+    document.getElementById('img-novo-servico').appendChild(img);
+    var reader = new FileReader();
+    reader.onload = (function (aImg) {
+        return function (e) {
+            aImg.src = e.target.result;
+        };
+    })(img);
+    reader.readAsDataURL(arquivo);
+
+});
 
 //IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA: LOGIN, CADASTRO E ATUALIZAÇÕES
 

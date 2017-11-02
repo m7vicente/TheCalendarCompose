@@ -9,7 +9,8 @@ function connectionFactory() {
 
 // populateDB: esta função é chamada pela connectionFactory. Ela cria as tabelas e realiza alguns inserts
 function populateDB(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS tb_pessoa');
+    tx.executeSql('DROP TABLE IF EXISTS tb_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_foto_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_servicos');
+    tx.executeSql('DROP TABLE IF EXISTS tb_foto_servico');tx.executeSql('DROP TABLE IF EXISTS tb_agendamentos');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_pessoa( id_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, nomeUsuario  TEXT NOT NULL UNIQUE, senha TEXT NOT NULL, nome_pessoa TEXT NOT NULL, nascimento DATETIME NOT NULL, sexo TEXT NOT NULL, email TEXT, celular TEXT, endereco_rua TEXT, endereco_cidade TEXT, endereco_cep INTEGER, endereco_estado TEXT, data_cadastro DATETIME DEFALT CURRENT_TIMESTAMP)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_pessoa(id_foto_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa INTEGER, imagem_pessoa BLOB, FOREIGN KEY (fk_id_pessoa) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
@@ -39,7 +40,7 @@ function inserirUsuario(novoUsuario) {
 //show: pode ser ultilizado para recolher todos os registros da tabela indicada
 function show() {
     db.transaction(function mostrarRegistros(tx) {
-        tx.executeSql('SELECT * FROM tb_servicos', [], select, errorDB);
+        tx.executeSql('SELECT * FROM tb_foto_servico', [], select, errorDB);
     }, errorDB);
 }
 
@@ -48,7 +49,9 @@ function select(tx, results) {
     var len = results.rows.length;
     alert(len + " Linhas Encontradas");
     for (var i = 0; i < len; i++) {
-        alert("ID: " + results.rows.item(i).id_servico + ";  Prestador: " + results.rows.item(i).fk_id_pessoa_prestador + ";  nome Servico: " + results.rows.item(i).nome_servico + "; Descrição: " + results.rows.item(i).descricao_servico + ";  Valor: " + results.rows.item(i).valor_servico + ";  Catoria: " + results.rows.item(i).categoria + ";  Ativo: " + results.rows.item(i).servico_ativo);
+        alert("ID: " + results.rows.item(i).id_foto_servico + "; Id fk Servico: " + results.rows.item(i).fk_id_servico + "; BLOB " + results.rows.item(i).imagem_servico);
+
+        //alert("ID: " + results.rows.item(i).id_servico + ";  Prestador: " + results.rows.item(i).fk_id_pessoa_prestador + ";  nome Servico: " + results.rows.item(i).nome_servico + "; Descrição: " + results.rows.item(i).descricao_servico + ";  Valor: " + results.rows.item(i).valor_servico + ";  Catoria: " + results.rows.item(i).categoria + ";  Ativo: " + results.rows.item(i).servico_ativo);
 }
 }
 
@@ -71,10 +74,11 @@ function login(userLogin) {
     }, errorDB);
 }
 
-//inserirNovo serviço
+//inserirNovo serviço e sua foto
 function adicionarServico(novoServico) {
     alert("ID: " + novoServico.id_servico + ";  Prestador: " + novoServico.idPrestador + ";  nome Servico: " + novoServico.nomeServico + ";  Valor: " + novoServico.valor_servico + ";  Catoria: " + novoServico.categoria + ";  Ativo: " + novoServico.servico_ativo);
     db.transaction(function InserirServicoDB(tx) {
         tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria) VALUES (?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria]);
+        tx.executeSql('INSERT INTO tb_foto_servico (fk_id_servico, imagem_servico) VALUES (last_insert_rowid(), ?)', [novoServico.imagem]);
     }, errorDB, sucessDB);
 }
