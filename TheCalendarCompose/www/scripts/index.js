@@ -19,10 +19,67 @@ function alterarTela() {
         $(target).addClass('page-active');
     });
     }
-
 alterarTela();
 
-//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
+//IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
+$('#btnCadastrarNovoServico').click(function inserirNovoServico(){
+    var novoServico = {};
+
+    novoServico.idPrestador = UsuarioLogado.id_pessoa;
+    novoServico.nomeServico = $('#NomeNovoServico').val();
+    novoServico.descricao_servico = $('#descricaoNovoServico').val();
+    novoServico.valor_servico = $('#ValorNovoServico').val();
+    novoServico.servico_ativo = true;
+    novoServico.categoria = $('#categoriaNovoServico').val();
+
+    if (ValidarServico(novoServico) == true) {
+        adicionarServico(novoServico);
+        show();
+        showToast("Adiconado com Sucesso !");
+    }
+
+});
+
+
+$('#imagemNovoServico').change(function getImagefile() {
+    var arquivo = document.getElementById('imagemNovoServico').files[0];
+    var local = $('#imagemNovoServico').val();
+      
+    var img = document.createElement("img");
+    img.file = arquivo;
+    //lendo arquivo selecionado
+    document.getElementById('img-novo-servico').appendChild(img);
+    var reader = new FileReader();
+    reader.onload = (function (aImg) {
+        return function (e) {
+            aImg.src = e.target.result;
+        };
+    })(img);
+    reader.readAsDataURL(arquivo);
+
+});
+
+//Função para validar os campos do serviço a ser adicionado
+function ValidarServico(novoServico) {
+       
+    if (novoServico.nomeServico == '') {
+        showToast("Insira um nome");
+        return false;
+    } else if (novoServico.descricao_servico == '') {
+        showToast("Insira uma descrição")
+        return false;
+    } else if (novoServico.valor_servico == '' || novoServico.valor_servico == 0) {
+        showToast("Insira o valor do serviço");
+        return false;
+    } else if (novoServico.categoria == '') {
+        showToast("Insira uma categoria");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA: LOGIN, CADASTRO E ATUALIZAÇÕES
 
 //Ação do botão Cadastrar Cadastrar Usuario
 $("#EnviarCadastro").click(function inserirRegistros() {
