@@ -30,7 +30,7 @@ function sucessDB(err) {
 
 //inserirUsuario: função que recebe os dados do index.js e insere no banco de dados.
 function inserirUsuario(novoUsuario) {
-    alert(novoUsuario.nomeUsuario + " , " + novoUsuario.senha + " , " + novoUsuario.sexo + " , " + novoUsuario.aniversario + " , " + novoUsuario.NomeCompleto + " , " + novoUsuario.Email + " , " + novoUsuario.telefone + " , " + novoUsuario.RuaUsuario + " , " + novoUsuario.UF + " , " + novoUsuario.Cidade + " , " + novoUsuario.Cep);
+    //alert(novoUsuario.nomeUsuario + " , " + novoUsuario.senha + " , " + novoUsuario.sexo + " , " + novoUsuario.aniversario + " , " + novoUsuario.NomeCompleto + " , " + novoUsuario.Email + " , " + novoUsuario.telefone + " , " + novoUsuario.RuaUsuario + " , " + novoUsuario.UF + " , " + novoUsuario.Cidade + " , " + novoUsuario.Cep);
     db.transaction(function DBnoUsuario(tx) {
         tx.executeSql('INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, nascimento, sexo, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES (?,?,?,?,?,?,?,?,?,?,? )', [novoUsuario.nomeUsuario, novoUsuario.senha, novoUsuario.sexo, novoUsuario.aniversario, novoUsuario.NomeCompleto, novoUsuario.Email, novoUsuario.telefone, novoUsuario.RuaUsuario, novoUsuario.Cidade, novoUsuario.Cep, novoUsuario.UF]);
     }, errorDB, sucessDB);
@@ -39,7 +39,7 @@ function inserirUsuario(novoUsuario) {
 //show: pode ser ultilizado para recolher todos os registros da tabela indicada
 function show() {
     db.transaction(function mostrarRegistros(tx) {
-        tx.executeSql('SELECT * FROM tb_pessoa', [], select, errorDB);
+        tx.executeSql('SELECT * FROM tb_servicos', [], select, errorDB);
     }, errorDB);
 }
 
@@ -48,13 +48,12 @@ function select(tx, results) {
     var len = results.rows.length;
     alert(len + " Linhas Encontradas");
     for (var i = 0; i < len; i++) {
-        alert("ID: " + results.rows.item(i).id_pessoa + ";  Pesssoa: " + results.rows.item(i).nomeUsuario + ";  Senha: " + results.rows.item(i).senha + ";  email: " + results.rows.item(i).email + ";  Celular: " + results.rows.item(i).celular + ";  Rua: " + results.rows.item(i).endereco_rua + ";  Cidade: " + results.rows.item(i).endereco_cidade + ";  Estado: " + results.rows.item(i).endereco_estado + ";  CEP: " + results.rows.item(i).endereco_cep + ";  Data Cadastro: " + results.rows.item(i).data_cadastro);
-    }
+        alert("ID: " + results.rows.item(i).id_servico + ";  Prestador: " + results.rows.item(i).fk_id_pessoa_prestador + ";  nome Servico: " + results.rows.item(i).nome_servico + "; Descrição: " + results.rows.item(i).descricao_servico + ";  Valor: " + results.rows.item(i).valor_servico + ";  Catoria: " + results.rows.item(i).categoria + ";  Ativo: " + results.rows.item(i).servico_ativo);
+}
 }
 
 //login: ultilizado para realizar o login de um usuario no sistema.
 function login(userLogin) {
-    
     db.transaction(function dataLogin(tx) {
         tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [userLogin.nomeUsuario, userLogin.senha], function select(tx, results) {         
             UsuarioLogado.id_pessoa = results.rows.item(0).id_pessoa;
@@ -68,9 +67,14 @@ function login(userLogin) {
             UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
             UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
             UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
-                      
         }, errorDB);
     }, errorDB);
 }
 
 //inserirNovo serviço
+function adicionarServico(novoServico) {
+    alert("ID: " + novoServico.id_servico + ";  Prestador: " + novoServico.idPrestador + ";  nome Servico: " + novoServico.nomeServico + ";  Valor: " + novoServico.valor_servico + ";  Catoria: " + novoServico.categoria + ";  Ativo: " + novoServico.servico_ativo);
+    db.transaction(function InserirServicoDB(tx) {
+        tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria) VALUES (?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria]);
+    }, errorDB, sucessDB);
+}
