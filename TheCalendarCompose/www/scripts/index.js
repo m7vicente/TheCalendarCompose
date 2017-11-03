@@ -1,8 +1,7 @@
 ﻿//Variaveis de usuario
-var UsuarioLogado = {};
+UsuarioLogado = new Usuario();
 
-
-
+//alert(user1.nomeUsuario);
 // Funções da aplicação
    // document.addEventListener("deviceready", connectionFactory, false);
 
@@ -23,7 +22,7 @@ alterarTela();
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
 $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
-    var novoServico = {};
+    var novoServico = new Servico();
     
     novoServico.idPrestador = UsuarioLogado.id_pessoa;
     novoServico.nomeServico = $('#NomeNovoServico').val();
@@ -84,7 +83,7 @@ $('#imagemNovoServico').change(function getImagefile() {
 //Ação do botão Cadastrar Cadastrar Usuario
 $("#EnviarCadastro").click(function inserirRegistros() {
 
-    var NovoConsumidor = {};
+    var NovoConsumidor = new Usuario()
 
     NovoConsumidor.nomeUsuario = $('#NomeUsuario').val();
     NovoConsumidor.senha = $('#SenhaUsuario').val();
@@ -97,8 +96,9 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.UF = $('#estado').val();
     NovoConsumidor.Cidade = $('#CidadeUsuario').val();
     NovoConsumidor.Cep = $('#CepUsuario').val();
+    NovoConsumidor.data_cadastro = new Date();
 
-    //alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
+    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
@@ -140,18 +140,22 @@ function validarCadastro(NovoConsumidor) {
 //Ação do botão Entrar
 $('#RealizarLogin').click(function realizarLogin() {
 
-    var newLogin = {};
-    newLogin.nomeUsuario = $('#user').val();
-    newLogin.senha = $('#pass').val();
+    var UsuarioEntrando = new Usuario();
 
-    if (newLogin.nomeUsuario != '' || newLogin.senha != '') {
-        login(newLogin);
-        if (UsuarioLogado.id_pessoa != 0) {
-            $('#tela-login').removeClass('page-active');
-            $('#tela-usuario-principal').addClass('page-active');
-        }
+    UsuarioEntrando.nomeUsuario = $('#user').val();
+    UsuarioEntrando.senha = $('#pass').val();
+
+    if (UsuarioEntrando.nomeUsuario != '' || UsuarioEntrando.senha != '') {
+        login(UsuarioEntrando);
     }
- });
+});
+
+function invalido() {
+    showToast("usuario ou senha incorretos ");
+}
+
+
+
 
 //Ação do botão Recuperar
 $('#RecuperarSenha').click(function resetarSenha() {
@@ -168,12 +172,13 @@ $('#AgendarServico').click(function agendarServico() {
   
 });
 
-//AO USUARIO REALIZAR O LOGIN ESTÁ TELA SERÁ CRIADA DINAMICAMENTE DE ACORDO COM AS INFORMAÇÕES DO BANCO
-$('#tela-usuario-principal').change(function criarTela() {
-
-$('#tela-usuario-principal').append("teste");
+function criarTela(UsuarioLogado) {   
+        $('#tela-login').removeClass('page-active');
+        $('#tela-usuario-principal').addClass('page-active');
+            
+    $('#tela-usuario-principal').html("<h1>" + this.UsuarioLogado.nomeUsuario + "</h1>");
 }
-);
+
 
 //FUNÇÃO DE TOAST UNIVELSAL
 function showToast(mensagem) {

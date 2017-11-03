@@ -26,7 +26,7 @@ function errorDB(err) {
 
 //sucessDB: é igual a errorDB, porém é chamada quando o comando sql é realizado com sucesso
 function sucessDB(err) {
-    alert("Sucesso ao executar query");
+    //alert("Sucesso ao executar query");
 }
 
 //inserirUsuario: função que recebe os dados do index.js e insere no banco de dados.
@@ -56,26 +56,32 @@ function select(tx, results) {
 }
 
 //login: ultilizado para realizar o login de um usuario no sistema.
-function login(userLogin) {
+function login(LoginUsuario) {
+
+    var UsuarioLogado = new Usuario();
+
     db.transaction(function dataLogin(tx) {
-        tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [userLogin.nomeUsuario, userLogin.senha], function select(tx, results) {         
-            UsuarioLogado.id_pessoa = results.rows.item(0).id_pessoa;
-            UsuarioLogado.nomeUsuario = results.rows.item(0).nomeUsuario;
-            UsuarioLogado.senha = results.rows.item(0).senha;
-            UsuarioLogado.nascimento = results.rows.item(0).nascimento;
-            UsuarioLogado.email = results.rows.item(0).email;
-            UsuarioLogado.celular = results.rows.item(0).celular;
-            UsuarioLogado.endereco_rua = results.rows.item(0).endereco_rua;
-            UsuarioLogado.endereco_cidade = results.rows.item(0).endereco_cidade;
-            UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
-            UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
-            UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
+        tx.executeSql('SELECT * FROM tb_pessoa WHERE nomeUsuario = ? AND senha = ?', [LoginUsuario.nomeUsuario, LoginUsuario.senha], function select(tx, results) {
+            try {
+                this.UsuarioLogado.entrou = true;
+                this.UsuarioLogado.id_pessoa = results.rows.item(0).id_pessoa;
+                this.UsuarioLogado.nomeUsuario = results.rows.item(0).nomeUsuario;
+                this.UsuarioLogado.nomePessoa = results.rows.item(0).nome_pessoa;
+                this.UsuarioLogado.senha = results.rows.item(0).senha;
+                this.UsuarioLogado.nascimento = results.rows.item(0).nascimento;
+                this.UsuarioLogado.email = results.rows.item(0).email;
+                this.UsuarioLogado.celular = results.rows.item(0).celular;
+                this.UsuarioLogado.endereco_rua = results.rows.item(0).endereco_rua;
+                this.UsuarioLogado.endereco_cidade = results.rows.item(0).endereco_cidade;
+                this.UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
+                this.UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
+                this.UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
+                criarTela(this.UsuarioLogado)
+            } catch (DOMException) {
+                invalido();
+            }
         }, errorDB);
-    }, function errorDB(err) {
-        if (err.code == 0) {
-            showToast("usuario ou senha incorretos ");
-        }
-    });
+    });    
 }
 
 //inserirNovo serviço e sua foto
