@@ -16,7 +16,7 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_servico(id_foto_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, imagem_servico BLOB, FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_agendamentos(id_agendamento INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, fk_id_pessoa_consumidor INTEGER NOT NULL, horario_dia_agendamento DATETIME, local_agendamento TEXT, valor_agendamento REAL, doc_consumidor TEXT, FOREIGN KEY (fk_id_pessoa_consumidor) REFERENCES tb_pessoa(id_pessoa), FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico) )');
-    tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, nascimento, sexo, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Maculino ',' 1999-02-24 ',' Matheus Guilherme de Araujo Vicente ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
+    tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
 }
 
 // errorDB: é chamada em qualquer função que realize um transição com o banco. ela somente é chamada quando a um erro na execução do comando, alertando qual foi o erro.
@@ -33,7 +33,7 @@ function sucessDB(err) {
 function inserirUsuario(novoUsuario) {
     //alert(novoUsuario.nomeUsuario + " , " + novoUsuario.senha + " , " + novoUsuario.sexo + " , " + novoUsuario.aniversario + " , " + novoUsuario.NomeCompleto + " , " + novoUsuario.Email + " , " + novoUsuario.telefone + " , " + novoUsuario.RuaUsuario + " , " + novoUsuario.UF + " , " + novoUsuario.Cidade + " , " + novoUsuario.Cep);
     db.transaction(function DBnoUsuario(tx) {
-        tx.executeSql('INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, nascimento, sexo, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES (?,?,?,?,?,?,?,?,?,?,? )', [novoUsuario.nomeUsuario, novoUsuario.senha, novoUsuario.sexo, novoUsuario.aniversario, novoUsuario.NomeCompleto, novoUsuario.Email, novoUsuario.telefone, novoUsuario.RuaUsuario, novoUsuario.Cidade, novoUsuario.Cep, novoUsuario.UF]);
+        tx.executeSql('INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES (?,?,?,?,?,?,?,?,?,?,? )', [novoUsuario.nomeUsuario, novoUsuario.senha, novoUsuario.nomePessoa, novoUsuario.aniversario, novoUsuario.NomeCompleto, novoUsuario.Email, novoUsuario.telefone, novoUsuario.RuaUsuario, novoUsuario.Cidade, novoUsuario.Cep, novoUsuario.UF]);
     }, errorDB, sucessDB);
  }
 
