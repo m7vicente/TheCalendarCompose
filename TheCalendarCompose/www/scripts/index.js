@@ -89,7 +89,7 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.senha = $('#SenhaUsuario').val();
     NovoConsumidor.sexo = $('input[name=sex-options]:checked').val();
     NovoConsumidor.aniversario = $('#nascimentoUsuario').val();
-    NovoConsumidor.NomeCompleto = $('#NomeCompleto').val();
+    NovoConsumidor.nomePessoa = $('#NomeCompleto').val();
     NovoConsumidor.Email = $('#EmailUsuario').val();
     NovoConsumidor.telefone = $('#CelularUsuario').val();
     NovoConsumidor.RuaUsuario = $('#RuaUsuario').val();
@@ -98,7 +98,7 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.Cep = $('#CepUsuario').val();
     NovoConsumidor.data_cadastro = new Date();
 
-    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.NomeCompleto + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
+    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.nomePessoa + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
@@ -176,8 +176,17 @@ function criarTela(UsuarioLogado) {
         $('#tela-login').removeClass('page-active');
         $('#tela-usuario-principal').addClass('page-active');
             
-    $('#tela-usuario-principal').html("<h1>" + this.UsuarioLogado.nomeUsuario + "</h1>");
+        $('#PUserName').html('<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">person</i>@' + this.UsuarioLogado.nomeUsuario + '</span> </li></ul>' +
+            '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">perm_identity</i>' + this.UsuarioLogado.nomePessoa + '</span> </li></ul>' +
+            '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">email</i>' + this.UsuarioLogado.email + '</span> </li></ul>'+
+            '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">contact_phone</i>' + this.UsuarioLogado.celular + '</span> </li></ul>' +
+            '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">place</i>Rua: ' + this.UsuarioLogado.endereco_rua + '<br> Estado: ' + this.UsuarioLogado.endereco_estado + '<br> Cidade: ' + this.UsuarioLogado.endereco_cidade + '<br> CEP: ' + this.UsuarioLogado.endereco_cep + '</span > </li ></ul > ');
+
 }
+
+$('#btnSair').click(function reload() {
+    location.reload();
+})
 
 
 //FUNÇÃO DE TOAST UNIVELSAL
