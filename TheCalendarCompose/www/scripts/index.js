@@ -21,6 +21,11 @@ function alterarTela() {
 alterarTela();
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
+
+
+
+
+//FUNÇÃO PARA A INSERÇÃO DE UM NOVO SERVICO
 $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     var novoServico = new Servico();
     
@@ -175,6 +180,8 @@ $('#AgendarServico').click(function agendarServico() {
 function criarTela(UsuarioLogado) {   
         $('#tela-login').removeClass('page-active');
         $('#tela-usuario-principal').addClass('page-active');
+        $('#tela_servicos').addClass('page-active');
+        $('#tela-servicos-off').removeClass('page-active');
 
         $('#PUserImagem').html('');
         
