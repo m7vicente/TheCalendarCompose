@@ -24,7 +24,30 @@ alterarTela();
 
 //FUNÇÃO PARA PREEENCHER ABA "MEUS SERVIÇOS"
 function preencherTelaServicos(ListaServicos) {
-    alert(ListaServicos[0].nomeServico);    
+
+    $('#meuServicos').html('');
+        for (var i = 0; i < ListaServicos.length; i++){
+
+        var info = (ListaServicos[i].idServico + '|' + ListaServicos[i].idPrestador + '|' + ListaServicos[i].nomeServico + '|' + ListaServicos[i].descricao_servico + '|' + ListaServicos[i].valor_servico + '|' + ListaServicos[i].servico_ativo + '|' + ListaServicos[i].categoria);
+                             
+        $('#meuServicos').append('<div class="servicoCard">' +
+            '<div class="mdl-card mdl-shadow--2dp">' +
+
+            '<div class="mdl-card__title">' +
+            '<h2 class="mdl-card__title-text">' + ListaServicos[i].nomeServico + '</h2>' +
+            '</div>' +
+            '<div class="mdl-card__supporting-text">' +
+            '<div class="servicoCard-descricao"></div>' + ListaServicos[i].descricao_servico + '</div>' +
+            '<div class="mdl-card__actions mdl-card--border">' +
+
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" dt-info="info" dt-page="#form-agendar" name="btnAgendar">' +
+            '<i class="material-icons">check_circle</i> Agendar' +
+            '</button>' +
+
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-atual="#servicos" dt-page="#tela-detalhes" name="btnDetalhes">' +
+            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes' +
+            '</button></div></div></div>');
+    }
 }
 
 
@@ -43,7 +66,9 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
 
     if (ValidarServico(novoServico) == true) {
         adicionarServico(novoServico);
-        showToast("Adiconado com Sucesso !");
+        //showToast("Adiconado com Sucesso !");
+        $('#tela-cadastro-servico').removeClass('page-active');
+        criarTela(UsuarioLogado);
     }
 
 });
@@ -195,6 +220,7 @@ function criarTela(UsuarioLogado) {
             '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">contact_phone</i>' + this.UsuarioLogado.celular + '</span> </li></ul>' +
             '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">place</i>Rua: ' + this.UsuarioLogado.endereco_rua + '<br> Estado: ' + this.UsuarioLogado.endereco_estado + '<br> Cidade: ' + this.UsuarioLogado.endereco_cidade + '<br> CEP: ' + this.UsuarioLogado.endereco_cep + '</span > </li ></ul > ');
         procurarMeusServicos(this.UsuarioLogado.id_pessoa);
+        UsuarioLogado = this.UsuarioLogado;
 }
 
 $('#btnSair').click(function reload() {
