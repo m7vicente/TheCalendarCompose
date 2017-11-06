@@ -43,6 +43,10 @@
     width:100%;
 }
 
+.servicoCard{
+    margin-bottom:5px;
+}
+
 .btnRetornar{
     float:right;
 }
