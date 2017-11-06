@@ -22,6 +22,10 @@ alterarTela();
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
 
+//FUNÇÃO PARA PREEENCHER ABA "MEUS SERVIÇOS"
+function preencherTelaServicos(ListaServicos) {
+    alert(ListaServicos[0].nomeServico);    
+}
 
 
 
@@ -182,7 +186,7 @@ function criarTela(UsuarioLogado) {
         $('#tela-usuario-principal').addClass('page-active');
         $('#tela_servicos').addClass('page-active');
         $('#tela-servicos-off').removeClass('page-active');
-
+        
         $('#PUserImagem').html('');
         
         $('#PUserName').html('<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">person</i>@' + this.UsuarioLogado.nomeUsuario + '</span> </li></ul>' +
@@ -190,7 +194,7 @@ function criarTela(UsuarioLogado) {
             '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">email</i>' + this.UsuarioLogado.email + '</span> </li></ul>'+
             '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">contact_phone</i>' + this.UsuarioLogado.celular + '</span> </li></ul>' +
             '<ul class="demo-list-icon mdl-list"><li class="mdl-list__item"> <span class="mdl-list__item-primary-content"> <i class="material-icons mdl-list__item-icon">place</i>Rua: ' + this.UsuarioLogado.endereco_rua + '<br> Estado: ' + this.UsuarioLogado.endereco_estado + '<br> Cidade: ' + this.UsuarioLogado.endereco_cidade + '<br> CEP: ' + this.UsuarioLogado.endereco_cep + '</span > </li ></ul > ');
-
+        procurarMeusServicos(this.UsuarioLogado.id_pessoa);
 }
 
 $('#btnSair').click(function reload() {

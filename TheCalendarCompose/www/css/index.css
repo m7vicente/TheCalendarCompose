@@ -88,7 +88,7 @@
 }
 
 /* Bug ao posicionar a o top no final*/
-.navegacaoInferiorDireito {
+#navegacaoInferiorDireito {
     position: fixed;
     transition: .5s ease;
     top: 88%;
@@ -104,6 +104,11 @@ label.input-custom-file input[type=file] {
     width: 100%;
     height:10%;
 }
+
 #tela-usuario-principal > h1{
     font-size: 1px;
+}
+
+#tela-servicos-off {
+    text-align:center;
 }

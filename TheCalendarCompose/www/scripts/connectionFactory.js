@@ -17,6 +17,8 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_servico(id_foto_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, imagem_servico BLOB, FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_agendamentos(id_agendamento INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, fk_id_pessoa_consumidor INTEGER NOT NULL, horario_dia_agendamento DATETIME, local_agendamento TEXT, valor_agendamento REAL, doc_consumidor TEXT, FOREIGN KEY (fk_id_pessoa_consumidor) REFERENCES tb_pessoa(id_pessoa), FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico) )');
     tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
+    tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'HE GAY',' Matheus Guilherme de Araujo Vicente ')");
+
 }
 
 // errorDB: é chamada em qualquer função que realize um transição com o banco. ela somente é chamada quando a um erro na execução do comando, alertando qual foi o erro.
@@ -91,4 +93,40 @@ function adicionarServico(novoServico) {
         tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria) VALUES (?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria]);
         tx.executeSql('INSERT INTO tb_foto_servico (fk_id_servico, imagem_servico) VALUES (last_insert_rowid(), ?)', [novoServico.imagem]);
     }, errorDB, sucessDB);
+}
+
+//função para selecionar servicos de usuario logado
+
+function procurarMeusServicos(id_usuarioLogado) {
+
+    var UsuarioLogado = new Usuario();
+
+    db.transaction(function dataLogin(tx) {
+        tx.executeSql('SELECT * FROM tb_servicos WHERE fk_id_pessoa_prestador = ?', [id_usuarioLogado], function select(tx, results) {
+        var ListaServicos = [];
+
+        var len = results.rows.length;
+        alert(len + " Linhas Encontradas");
+
+
+        for (var i = 0; i < len; i++) {
+            var servicos = new Servico();
+            try {
+                servicos.idServico = results.rows.item(i).id_servico;
+                servicos.idPrestador = results.rows.item(i).fk_id_pessoa_prestador;
+                servicos.nomeServico = results.rows.item(i).nome_servico;
+                servicos.descricao_servico = results.rows.item(i).descricao_servico;
+                servicos.valor_servico = results.rows.item(i).valor_servico;
+                servicos.servico_ativo = results.rows.item(i).servico_ativo;
+                servicos.categoria = results.rows.item(i).categoria;
+ 
+
+            } catch (DOMException) { }
+            ListaServicos[i] = servicos;
+            
+        }
+        preencherTelaServicos(ListaServicos);
+        
+    }, errorDB);
+});    
 }
