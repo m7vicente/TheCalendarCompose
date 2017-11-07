@@ -105,9 +105,6 @@ function procurarMeusServicos(id_usuarioLogado) {
         var ListaServicos = [];
 
         var len = results.rows.length;
-        alert(len + " Linhas Encontradas");
-
-
         for (var i = 0; i < len; i++) {
             var servicos = new Servico();
             try {
