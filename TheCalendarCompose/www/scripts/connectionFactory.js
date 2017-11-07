@@ -98,9 +98,7 @@ function adicionarServico(novoServico) {
 
 //função para selecionar servicos de usuario logado
 
-function procurarMeusServicos(id_usuarioLogado) {
-
-    var UsuarioLogado = new Usuario();
+function procurarMeusServicos(id_usuarioLogado) {  
 
     db.transaction(function dataLogin(tx) {
         tx.executeSql('SELECT * FROM tb_servicos WHERE fk_id_pessoa_prestador = ?', [id_usuarioLogado], function select(tx, results) {
@@ -130,4 +128,12 @@ function procurarMeusServicos(id_usuarioLogado) {
         
     }, errorDB);
 });    
+}
+
+//FUNÇÃO PARA DELETAR UM SERVIÇO
+function delatarServico(idServico) {
+    db.transaction(function deleteService(tx) {
+        tx.executeSql('DELETE FROM tb_servicos WHERE id_servico = ?', [idServico]);
+    }, errorDB, sucessDB);
+    procurarMeusServicos(UsuarioLogado.id_pessoa)
 }

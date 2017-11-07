@@ -40,12 +40,12 @@ function preencherTelaServicos(ListaServicos) {
             '<div class="servicoCard-descricao"></div>' + ListaServicos[i].descricao_servico + '</div>' +
             '<div class="mdl-card__actions mdl-card--border">' +
 
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" dt-info="info" id="servico['+ i +']" name="btnAgendar">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" dt-info="info" id="servico[' + ListaServicos[i].idServico + ']" name="btnAgendar">' +
             '<i class="material-icons">build</i> Editar' +
             '</button>' +
 
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect targetPage" dt-page="#tela-detalhes" name="btnDesativar">' +
-            '<i id="iconDetalhes" class="material-icons">block</i> Excluir' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect name="btnDeletar" onclick="delatarServico(' + ListaServicos[i].idServico + ')">' +
+            '<i id="iconDetalhes" class="material-icons">delete_forever</i> Excluir' +
             '</button></div></div></div>');
     }
 
