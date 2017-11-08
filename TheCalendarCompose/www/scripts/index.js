@@ -26,10 +26,9 @@ alterarTela();
 function preencherTelaServicos(ListaServicos) {
 
     $('#meuServicos').html('');
-        for (var i = 0; i < ListaServicos.length; i++){
+    for (var i = 0; i < ListaServicos.length; i++) {
 
-        var info = (ListaServicos[i].idServico + '|' + ListaServicos[i].idPrestador + '|' + ListaServicos[i].nomeServico + '|' + ListaServicos[i].descricao_servico + '|' + ListaServicos[i].valor_servico + '|' + ListaServicos[i].servico_ativo + '|' + ListaServicos[i].categoria);
-                             
+
         $('#meuServicos').append('<div class="servicoCard">' +
             '<div class="mdl-card mdl-shadow--2dp">' +
 
@@ -40,17 +39,34 @@ function preencherTelaServicos(ListaServicos) {
             '<div class="servicoCard-descricao"></div>' + ListaServicos[i].descricao_servico + '</div>' +
             '<div class="mdl-card__actions mdl-card--border">' +
 
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" dt-info="info" id="servico[' + ListaServicos[i].idServico + ']" name="btnAgendar">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="servico[' + ListaServicos[i].idServico + ']" name="btnEditar" onclick="editarServico(' + ListaServicos[i].idServico + ',' + ListaServicos[i].idPrestador + ',' + ("'" + ListaServicos[i].nomeServico + "'") + ',' + ("'" + ListaServicos[i].descricao_servico + "'") + ',' + ("'" + ListaServicos[i].categoria + "'") + ',' + ListaServicos[i].valor_servico + ',' + ListaServicos[i].servico_ativo + ')">' +
             '<i class="material-icons">build</i> Editar' +
             '</button>' +
 
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect name="btnDeletar" onclick="delatarServico(' + ListaServicos[i].idServico + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" name="btnDeletar" onclick="deletarServico(' + ListaServicos[i].idServico + ')">' +
             '<i id="iconDetalhes" class="material-icons">delete_forever</i> Excluir' +
             '</button></div></div></div>');
     }
 
 
 }
+
+function editarServico(idServico, idPrestador, nomeServico, descricao_servico, categoria, valor_servico, servico_ativo, imagem) {
+    
+    $('#tela_servicos').removeClass('page-active');
+    $('#tela-cadastro-servico').addClass('page-active');
+    
+    $('#NomeNovoServico').val(nomeServico);
+    $('#descricaoNovoServico').val(descricao_servico);
+    $('#ValorNovoServico').val(valor_servico);
+    $('#categoriaNovoServico').val(categoria);
+
+    $('#btnCadastrarNovoServico').click(function deletarAnterior() {
+        deletarServico(idServico);
+    });
+    
+}
+
 
 
 

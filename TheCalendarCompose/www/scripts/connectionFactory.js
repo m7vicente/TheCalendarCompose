@@ -79,7 +79,7 @@ function login(LoginUsuario) {
                 this.UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
                 this.UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
                 this.UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
-                criarTela(this.UsuarioLogado)
+                criarTela(this.UsuarioLogado);
             } catch (DOMException) {
                 invalido();
             }
@@ -128,9 +128,9 @@ function procurarMeusServicos(id_usuarioLogado) {
 }
 
 //FUNÇÃO PARA DELETAR UM SERVIÇO
-function delatarServico(idServico) {
+function deletarServico(idServico) {
     db.transaction(function deleteService(tx) {
         tx.executeSql('DELETE FROM tb_servicos WHERE id_servico = ?', [idServico]);
     }, errorDB, sucessDB);
-    procurarMeusServicos(UsuarioLogado.id_pessoa)
+    procurarMeusServicos(UsuarioLogado.id_pessoa);
 }
