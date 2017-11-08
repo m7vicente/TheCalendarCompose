@@ -29,7 +29,7 @@ function preencherTelaServicos(ListaServicos) {
     for (var i = 0; i < ListaServicos.length; i++) {
 
 
-        $('#meuServicos').append('<div class="servicoCard">' +
+        $('#meuServicos').append('<div class="servicoCard mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">' +
             '<div class="mdl-card mdl-shadow--2dp">' +
 
             '<div class="mdl-card__title">' +
