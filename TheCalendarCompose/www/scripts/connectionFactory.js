@@ -4,13 +4,14 @@ var db;
 //  ConnectionFactory: esta função cria a conexão com o banco SQLITE do dispositivo, ele mantem a mesma em uma variavel global chamada db.
 function connectionFactory() {
     db = window.openDatabase("DataBase", "1.0", "TheCalendar", 2000000);
-    db.transaction(populateDB, errorDB, sucessDB);  
+    db.transaction(populateDB, errorDB, sucessDB);
+    criarPrimeiraTela();
 }
 
 // populateDB: esta função é chamada pela connectionFactory. Ela cria as tabelas e realiza alguns inserts
 function populateDB(tx) {
-    tx.executeSql('DROP TABLE IF EXISTS tb_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_foto_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_servicos');
-    tx.executeSql('DROP TABLE IF EXISTS tb_foto_servico');tx.executeSql('DROP TABLE IF EXISTS tb_agendamentos');
+    //tx.executeSql('DROP TABLE IF EXISTS tb_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_foto_pessoa'); tx.executeSql('DROP TABLE IF EXISTS tb_servicos');
+    //tx.executeSql('DROP TABLE IF EXISTS tb_foto_servico');tx.executeSql('DROP TABLE IF EXISTS tb_agendamentos');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_pessoa( id_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, nomeUsuario  TEXT NOT NULL UNIQUE, senha TEXT NOT NULL, nome_pessoa TEXT NOT NULL, nascimento DATETIME NOT NULL, sexo TEXT NOT NULL, email TEXT, celular TEXT, endereco_rua TEXT, endereco_cidade TEXT, endereco_cep INTEGER, endereco_estado TEXT, data_cadastro DATETIME DEFALT CURRENT_TIMESTAMP)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_pessoa(id_foto_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa INTEGER, imagem_pessoa BLOB, FOREIGN KEY (fk_id_pessoa) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
@@ -133,4 +134,33 @@ function deletarServico(idServico) {
         tx.executeSql('DELETE FROM tb_servicos WHERE id_servico = ?', [idServico]);
     }, errorDB, sucessDB);
     procurarMeusServicos(UsuarioLogado.id_pessoa);
+}
+
+//FUNÇÃO PARA SELECIONAR TODOS OS SERVIÇOS DO BANCO
+function criarPrimeiraTela(){
+    db.transaction(function selectAll(tx) {
+        tx.executeSql('SELECT * FROM tb_servicos',[], function select(tx, results) {
+            var ListaServicos = [];
+
+            var len = results.rows.length;
+            for (var i = 0; i < len; i++) {
+                var servicos = new Servico();
+                try {
+                    servicos.idServico = results.rows.item(i).id_servico;
+                    servicos.idPrestador = results.rows.item(i).fk_id_pessoa_prestador;
+                    servicos.nomeServico = results.rows.item(i).nome_servico;
+                    servicos.descricao_servico = results.rows.item(i).descricao_servico;
+                    servicos.valor_servico = results.rows.item(i).valor_servico;
+                    servicos.servico_ativo = results.rows.item(i).servico_ativo;
+                    servicos.categoria = results.rows.item(i).categoria;
+
+
+                } catch (DOMException) { }
+                ListaServicos[i] = servicos;
+
+            }
+            mostraPrimeiraTela(ListaServicos);
+
+        }, errorDB);
+    });    
 }

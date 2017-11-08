@@ -3,7 +3,7 @@ UsuarioLogado = new Usuario();
 
 //alert(user1.nomeUsuario);
 // Funções da aplicação
-   // document.addEventListener("deviceready", connectionFactory, false);
+    document.addEventListener("deviceready", connectionFactory, false);
 
 
 //para carregar no navegador 
@@ -19,6 +19,33 @@ function alterarTela() {
     });
     }
 alterarTela();
+//IMPLEMENTAÇÃO DAS AÇÕES DA 1 ABA: ACHAR SERVIÇO
+
+function mostraPrimeiraTela(ListaTodosServicos) {
+
+    for (i = 0; i < ListaTodosServicos.length; i++) {
+
+        $('#todosServicos').append('<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">' +
+            '<div class="servicoCard">' +
+            '<div class="mdl-card mdl-shadow--2dp">' +
+            '<div class="mdl-card__title">' +
+            '<h2 class="mdl-card__title-text">' + ListaTodosServicos[i].nomeServico + '</h2>' +
+            '</div>' +
+            '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
+            '<div class="mdl-card__actions mdl-card--border">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="">' +
+            '<i class="material-icons">check_circle</i> Agendar </button>' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
+            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
+            '</div></div></div ></div>');
+
+    }
+}
+
+
+
+
+
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
 
@@ -63,6 +90,7 @@ function editarServico(idServico, idPrestador, nomeServico, descricao_servico, c
 
     $('#btnCadastrarNovoServico').click(function deletarAnterior() {
         deletarServico(idServico);
+        //showToast("Alerado com Sucesso");
     });
     
 }
@@ -154,7 +182,7 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
-        showToast("Validado");
+        //showToast("Validado");
         $('#tela-cadastro').removeClass('page-active');
         $('#tela-login').addClass('page-active');
     }
@@ -203,7 +231,7 @@ $('#RealizarLogin').click(function realizarLogin() {
 });
 
 function invalido() {
-    showToast("usuario ou senha incorretos ");
+    //showToast("Usuario ou senha incorretos ");
 }
 
 
