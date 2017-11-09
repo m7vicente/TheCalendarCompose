@@ -45,19 +45,50 @@ function mostraPrimeiraTela(ListaTodosServicos) {
 
 //função responsavel por alterar para a tela de agendamento de servico
 function telaDeAgendamento(idServico) {
-    
-    $('#servicos').removeClass('page-active');
-    $('#form-agendar').addClass('page-active');
+    if (UsuarioLogado.id_pessoa == null) {
+
+        showToast("Realize login para agendar um serviço");
+    }
+    else {
+
+        $('#servicos').removeClass('page-active');
+        $('#form-agendar').addClass('page-active');
 
 
-    $('#AgendarServico').click(function agendarServico() {
+        $('#AgendarServico').click(function PrepararAgendamentoServico() {
 
-        showToast("Agendar Servico");
+            var agendar = new Agendamento();
 
-    });
+            agendar.fk_id_servico = idServico;
+            agendar.fk_id_pessoa_consumidor = UsuarioLogado.id_pessoa;
+            agendar.nome_consumidor = $('#NomeConsumidor').val();
+            agendar.horario_dia_agendamento = $('#dataReserva').val();
+            agendar.doc_consumidor = $('#identidade').val();
+
+            if (validarCamposAgendamento(agendar)) {
+                agendarServico(agendar);
+            }
+
+        });
+    }
 }
 
-function validarCamposAgendamento() {
+function validarCamposAgendamento(agendar) {
+    if (agendar.nome_consumidor == '') {
+        showToast("Insira o nome da pessoa que irá ultilizar a reserva");
+        return false;
+    }
+    if (agendar.horario_dia_agendamento == '') {
+        showToast("Insira o horario que você predende ser atendido");
+        return false;
+    }
+    if (agendar.doc_consumidor == '') {
+        showToast("Insira um RG ou CPF da pessoa ultilizara a reserva");
+        return false;
+    }
+    else {
+        return true;
+    }
 
 }
 
