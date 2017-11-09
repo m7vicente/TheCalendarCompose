@@ -21,6 +21,7 @@ function alterarTela() {
 alterarTela();
 //IMPLEMENTAÇÃO DAS AÇÕES DA 1 ABA: ACHAR SERVIÇO
 
+//função responsavel por gerar conteudo dinamico na tela inicial do app, 
 function mostraPrimeiraTela(ListaTodosServicos) {
 
     for (i = 0; i < ListaTodosServicos.length; i++) {
@@ -33,7 +34,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
             '</div>' +
             '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ')">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
@@ -42,7 +43,23 @@ function mostraPrimeiraTela(ListaTodosServicos) {
     }
 }
 
+//função responsavel por alterar para a tela de agendamento de servico
+function telaDeAgendamento(idServico) {
+    
+    $('#servicos').removeClass('page-active');
+    $('#form-agendar').addClass('page-active');
 
+
+    $('#AgendarServico').click(function agendarServico() {
+
+        showToast("Agendar Servico");
+
+    });
+}
+
+function validarCamposAgendamento() {
+
+}
 
 
 
@@ -245,12 +262,6 @@ $('#RecuperarSenha').click(function resetarSenha() {
 
 
 //IMPLEMENTAÇÃO DAS AÇOES DA 4 ABA LOGIN, CADASTRO E ATUALIZAÇÕES
-
-$('#AgendarServico').click(function agendarServico() {
-
-    showToast("Agendar Servico");
-  
-});
 
 function criarTela(UsuarioLogado) {   
         $('#tela-login').removeClass('page-active');
