@@ -25,10 +25,11 @@ function Servico(idServico,idPrestador, nomeServico, descricao_servico,categoria
     this.imagem = imagem;
 }
 
-function Agendamento(id_agendamento, fk_id_servico, fk_id_pessoa_consumidor, horario_dia_agendamento, local_agendamento, valor_agendamento,doc_consumidor) {
+function Agendamento(id_agendamento, fk_id_servico, fk_id_pessoa_consumidor, nome_consumidor ,horario_dia_agendamento, local_agendamento, valor_agendamento,doc_consumidor) {
     this.id_agendamento = id_agendamento
     this.fk_id_servico = fk_id_servico;
     this.fk_id_pessoa_consumidor = fk_id_pessoa_consumidor;
+    this.nome_consumido = nome_consumidor;
     this.horario_dia_agendamento = horario_dia_agendamento;
     this.local_agendamento = local_agendamento;
     this.valor_agendamento = valor_agendamento;
