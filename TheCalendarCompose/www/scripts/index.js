@@ -34,7 +34,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
             '</div>' +
             '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ')">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
@@ -44,7 +44,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
 }
 
 //função responsavel por alterar para a tela de agendamento de servico
-function telaDeAgendamento(idServico) {
+function telaDeAgendamento(idServico, valorServico) {
     if (UsuarioLogado.id_pessoa == null) {
 
         showToast("Realize login para agendar um serviço");
@@ -60,11 +60,13 @@ function telaDeAgendamento(idServico) {
             var agendar = new Agendamento();
 
             agendar.fk_id_servico = idServico;
+            agendar.valor_agendamento = valorServico;
             agendar.fk_id_pessoa_consumidor = UsuarioLogado.id_pessoa;
             agendar.nome_consumidor = $('#NomeConsumidor').val();
             agendar.horario_dia_agendamento = $('#dataReserva').val();
             agendar.doc_consumidor = $('#identidade').val();
 
+            
             if (validarCamposAgendamento(agendar)) {
                 agendarServico(agendar);
             }

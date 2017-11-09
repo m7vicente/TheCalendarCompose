@@ -30,7 +30,7 @@ function errorDB(err) {
 
 //sucessDB: é igual a errorDB, porém é chamada quando o comando sql é realizado com sucesso
 function sucessDB(err) {
-    //alert("Sucesso ao executar query");
+    alert("Sucesso ao executar query");
 }
 
 //inserirUsuario: função que recebe os dados do index.js e insere no banco de dados.
@@ -163,4 +163,16 @@ function criarPrimeiraTela(){
 
         }, errorDB);
     });    
+}
+
+
+//FUNÇÃO PARA INSERIR AGENDAMENTOS NO BANCO DE DADOS
+
+function agendarServico(agendar) {
+    alert(agendar.fk_id_servico + ' ' + agendar.fk_id_pessoa_consumidor + ' ' + agendar.nome_consumidor + ' ' + agendar.horario_dia_agendamento + ' ' + agendar.valor_agendamento + ' ' + agendar.doc_consumidor);
+
+
+    db.transaction(function novoAgendamento(tx) {
+        tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico, fk_id_pessoa_consumidor , nome_consumidor , horario_dia_agendamento , valor_agendamento , doc_consumidor)  VALUES (?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor]);
+    }, errorDB, sucessDB);
 }
