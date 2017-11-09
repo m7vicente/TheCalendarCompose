@@ -94,7 +94,28 @@ function validarCamposAgendamento(agendar) {
 
 }
 
+/*/IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
+function mostraSegundaTela(ListaAgendamento) {
+    for (i = 0; i < ListaAgendamento.length; i++) {
 
+        $('#meusAgendamentos').append('<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">' +
+            '<div class="servicoCard">' +
+            '<div class="mdl-card mdl-shadow--2dp">' +
+            '<div class="mdl-card__title">' +
+            '<h2 class="mdl-card__title-text">' + ListaAgendamento[i].nomeServico + '</h2>' +
+            '</div>' +
+            '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
+            '<div class="mdl-card__actions mdl-card--border">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ')">' +
+            '<i class="material-icons">check_circle</i> Agendar </button>' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
+            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
+            '</div></div></div ></div>');
+
+    }
+}
+
+*/
 
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS

@@ -30,7 +30,7 @@ function errorDB(err) {
 
 //sucessDB: é igual a errorDB, porém é chamada quando o comando sql é realizado com sucesso
 function sucessDB(err) {
-    alert("Sucesso ao executar query");
+    //alert("Sucesso ao executar query");
 }
 
 //inserirUsuario: função que recebe os dados do index.js e insere no banco de dados.
@@ -80,7 +80,12 @@ function login(LoginUsuario) {
                 this.UsuarioLogado.endereco_estado = results.rows.item(0).endereco_estado;
                 this.UsuarioLogado.endereco_cep = results.rows.item(0).endereco_cep;
                 this.UsuarioLogado.data_cadastro = results.rows.item(0).data_cadastro;
+
+                //Dentro desde try deve ser chamado as funções do banco que criam as demais telas
+                
                 criarTela(this.UsuarioLogado);
+                selecionarAgendamentos(this.UsuarioLogado.id_pessoa);
+
             } catch (DOMException) {
                 invalido();
             }
@@ -172,4 +177,36 @@ function agendarServico(agendar) {
  db.transaction(function novoAgendamento(tx) {
         tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor) VALUES (?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor]);                                               
     }, errorDB, sucessDB);
+}
+
+function selecionarAgendamentos(idUsuarioLogado) {
+    db.transaction(function selectAll(tx) {
+        tx.executeSql('SELECT * FROM tb_agendamentos WHERE fk_id_pessoa_consumidor = ? ', [idUsuarioLogado], function select(tx, results) {
+            var ListaAgendamento = [];
+
+            var len = results.rows.length;
+            for (var i = 0; i < len; i++) {
+
+                var agendamento = new Agendamento();
+
+                try {
+                    agendamento.id_agendamento = results.rows.item(i).id_agendamento;
+                    agendamento.fk_id_servico = results.rows.item(i).fk_id_servico;
+                    agendamento.fk_id_pessoa_consumidor = results.rows.item(i).fk_id_pessoa_consumidor;
+                    agendamento.nome_consumido = results.rows.item(i).nome_consumidor;
+                    agendamento.horario_dia_agendamento = results.rows.item(i).horario_dia_agendamento;
+                    agendamento.local_agendamento = results.rows.item(i).local_agendamento;
+                    agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
+                    agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
+            
+
+
+                } catch (DOMException) { }
+                ListaAgendamento[i] = agendamento;
+
+            }
+            mostraSegundaTela(ListaAgendamento);
+
+        }, errorDB);
+    });
 }
