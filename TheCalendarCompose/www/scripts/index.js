@@ -63,7 +63,7 @@ function telaDeAgendamento(idServico, valorServico) {
             agendar.valor_agendamento = valorServico;
             agendar.fk_id_pessoa_consumidor = UsuarioLogado.id_pessoa;
             agendar.nome_consumidor = $('#NomeConsumidor').val();
-            agendar.horario_dia_agendamento = $('#dataReserva').val();
+            agendar.horario_dia_agendamento = ($('#dataReserva').val().split("T").join(" "));
             agendar.doc_consumidor = $('#identidade').val();
 
             
