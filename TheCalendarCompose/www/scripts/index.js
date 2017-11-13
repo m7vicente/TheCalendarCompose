@@ -34,7 +34,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
             '</div>' +
             '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ',' + ("'" + ListaTodosServicos[i].nomeServico + "'") + ')">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
@@ -44,7 +44,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
 }
 
 //função responsavel por alterar para a tela de agendamento de servico
-function telaDeAgendamento(idServico, valorServico) {
+function telaDeAgendamento(idServico, valorServico, nome_servico) {
     if (UsuarioLogado.id_pessoa == null) {
 
         showToast("Realize login para agendar um serviço");
@@ -65,6 +65,7 @@ function telaDeAgendamento(idServico, valorServico) {
             agendar.nome_consumidor = $('#NomeConsumidor').val();
             agendar.horario_dia_agendamento = ($('#dataReserva').val().split("T").join(" "));
             agendar.doc_consumidor = $('#identidade').val();
+            agendar.nome_servico = nome_servico;
 
             
             if (validarCamposAgendamento(agendar)) {
@@ -94,7 +95,7 @@ function validarCamposAgendamento(agendar) {
 
 }
 
-/*/IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
+//IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
 function mostraSegundaTela(ListaAgendamento) {
     for (i = 0; i < ListaAgendamento.length; i++) {
 
@@ -102,11 +103,11 @@ function mostraSegundaTela(ListaAgendamento) {
             '<div class="servicoCard">' +
             '<div class="mdl-card mdl-shadow--2dp">' +
             '<div class="mdl-card__title">' +
-            '<h2 class="mdl-card__title-text">' + ListaAgendamento[i].nomeServico + '</h2>' +
+            '<h1 class="mdl-card__title-text">' + ListaAgendamento[i].nome_servico + '</h1>' +
             '</div>' +
-            '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
+            '<div class="mdl-card__supporting-text"><h2>' + ListaAgendamento[i].horario_dia_agendamento + '</h2></div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
@@ -115,7 +116,7 @@ function mostraSegundaTela(ListaAgendamento) {
     }
 }
 
-*/
+
 
 
 //IMPLEMTENTAÇÃO DAS AÇÕES DA 3 ABA: MEUS SERVICOS
