@@ -104,6 +104,8 @@ function validarCamposAgendamento(agendar) {
 
 //IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
 function mostraSegundaTela(ListaAgendamento) {
+    $('#pagina-agendamentos').addClass('page-active');
+    
 
     $('#meusAgendamentos').html('');
 
