@@ -116,3 +116,16 @@ label.input-custom-file input[type=file] {
 #tela-servicos-off {
     text-align:center;
 }
+
+
+.agendamentoCard > .mdl-card {
+    width: 100%;
+}
+
+.agendamentoCard {
+    margin-bottom: 5px;
+}
+
+    .agendamentoCard > mdl-card__title-text{
+        color: purple;
+    }

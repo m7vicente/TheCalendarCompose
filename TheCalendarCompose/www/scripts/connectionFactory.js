@@ -177,6 +177,7 @@ function agendarServico(agendar) {
  db.transaction(function novoAgendamento(tx) {
      tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor, nome_servico) VALUES (?,?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor, agendar.nome_servico]);                                               
     }, errorDB, sucessDB);
+ selecionarAgendamentos(agendar.fk_id_pessoa_consumidor);
 }
 
 
@@ -204,8 +205,6 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
                     agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
                     agendamento.nome_servico = results.rows.item(i).nome_servico;
-
-                    alert(results.rows.item(i).nome_servico);
 
                 } catch (DOMException) {
                     alert("error");}

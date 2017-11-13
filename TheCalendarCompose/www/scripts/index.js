@@ -24,6 +24,8 @@ alterarTela();
 //função responsavel por gerar conteudo dinamico na tela inicial do app, 
 function mostraPrimeiraTela(ListaTodosServicos) {
 
+    $('#todosServicos').html('');
+
     for (i = 0; i < ListaTodosServicos.length; i++) {
 
         $('#todosServicos').append('<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">' +
@@ -70,6 +72,11 @@ function telaDeAgendamento(idServico, valorServico, nome_servico) {
             
             if (validarCamposAgendamento(agendar)) {
                 agendarServico(agendar);
+                showToast("Agendado com Sucesso");
+                
+                $('#servicos').removeClass('page-active');
+                $('#form-agendar').addClass('page-active');
+                                
             }
 
         });
@@ -97,18 +104,21 @@ function validarCamposAgendamento(agendar) {
 
 //IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
 function mostraSegundaTela(ListaAgendamento) {
-    for (i = 0; i < ListaAgendamento.length; i++) {
+
+    $('#meusAgendamentos').html('');
+
+        for(i = 0; i < ListaAgendamento.length; i++) {
 
         $('#meusAgendamentos').append('<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">' +
-            '<div class="servicoCard">' +
+            '<div class="agendamentoCard">' +
             '<div class="mdl-card mdl-shadow--2dp">' +
             '<div class="mdl-card__title">' +
             '<h1 class="mdl-card__title-text">' + ListaAgendamento[i].nome_servico + '</h1>' +
             '</div>' +
-            '<div class="mdl-card__supporting-text"><h2>' + ListaAgendamento[i].horario_dia_agendamento + '</h2></div > ' +
+            '<div class="mdl-card__supporting-text">' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16))+'</div> ' +
             '<div class="mdl-card__actions mdl-card--border">' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
-            '<i class="material-icons">check_circle</i> Agendar </button>' +
+            '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
             '</div></div></div ></div>');
