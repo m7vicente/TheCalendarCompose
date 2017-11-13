@@ -16,10 +16,10 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_pessoa(id_foto_pessoa INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa INTEGER, imagem_pessoa BLOB, FOREIGN KEY (fk_id_pessoa) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_servicos(id_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_pessoa_prestador INTEGER, nome_servico TEXT NOT NULL, descricao_servico TEXT NOT NULL, valor_servico REAL, servico_ativo REAL, categoria TEXT, FOREIGN KEY (fk_id_pessoa_prestador) REFERENCES tb_pessoa (id_pessoa))');
     tx.executeSql('CREATE TABLE IF NOT EXISTS tb_foto_servico(id_foto_servico INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, imagem_servico BLOB, FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico))');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS tb_agendamentos(id_agendamento INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, fk_id_pessoa_consumidor INTEGER NOT NULL, nome_consumidor TEXT NOT NULL ,horario_dia_agendamento DATETIME, valor_agendamento REAL, doc_consumidor TEXT, FOREIGN KEY (fk_id_pessoa_consumidor) REFERENCES tb_pessoa(id_pessoa), FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico) )');
-    // tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
-    // tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'HE GAY',' Matheus Guilherme de Araujo Vicente ')");
-    // tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'Barbie',' A boneca que é a alegria da garotada ')");
+    tx.executeSql('CREATE TABLE IF NOT EXISTS tb_agendamentos(id_agendamento INTEGER PRIMARY KEY AUTOINCREMENT, fk_id_servico INTEGER NOT NULL, fk_id_pessoa_consumidor INTEGER NOT NULL, nome_consumidor TEXT NOT NULL ,horario_dia_agendamento DATETIME, valor_agendamento REAL, doc_consumidor TEXT, nome_servico TEXT, FOREIGN KEY (fk_id_pessoa_consumidor) REFERENCES tb_pessoa(id_pessoa), FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico) )');
+    //tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
+    //tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'HE GAY',' Matheus Guilherme de Araujo Vicente ')");
+    //tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'Barbie',' A boneca que é a alegria da garotada ')");
 
 }
 
@@ -175,15 +175,20 @@ function criarPrimeiraTela(){
 
 function agendarServico(agendar) {
  db.transaction(function novoAgendamento(tx) {
-        tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor) VALUES (?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor]);                                               
+     tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor, nome_servico) VALUES (?,?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor, agendar.nome_servico]);                                               
     }, errorDB, sucessDB);
 }
 
+
 function selecionarAgendamentos(idUsuarioLogado) {
+    //deve ser removido daqui
+    
+    var ListaAgendamento = [];
+   
+
     db.transaction(function selectAll(tx) {
         tx.executeSql('SELECT * FROM tb_agendamentos WHERE fk_id_pessoa_consumidor = ? ', [idUsuarioLogado], function select(tx, results) {
-            var ListaAgendamento = [];
-
+            
             var len = results.rows.length;
             for (var i = 0; i < len; i++) {
 
@@ -198,15 +203,19 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.local_agendamento = results.rows.item(i).local_agendamento;
                     agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
                     agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
-            
+                    agendamento.nome_servico = results.rows.item(i).nome_servico;
 
+                    alert(results.rows.item(i).nome_servico);
 
-                } catch (DOMException) { }
+                } catch (DOMException) {
+                    alert("error");}
                 ListaAgendamento[i] = agendamento;
 
             }
             mostraSegundaTela(ListaAgendamento);
+            
 
         }, errorDB);
     });
+
 }
