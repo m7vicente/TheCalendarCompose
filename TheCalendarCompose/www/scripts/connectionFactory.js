@@ -183,13 +183,13 @@ function agendarServico(agendar) {
 
 function selecionarAgendamentos(idUsuarioLogado) {
     //deve ser removido daqui
-    
+
     var ListaAgendamento = [];
-   
+    var ListaMeusAgendamento = [];
 
     db.transaction(function selectAll(tx) {
         tx.executeSql('SELECT * FROM tb_agendamentos WHERE fk_id_pessoa_consumidor = ? ', [idUsuarioLogado], function select(tx, results) {
-            
+
             var len = results.rows.length;
             for (var i = 0; i < len; i++) {
 
@@ -207,14 +207,44 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.nome_servico = results.rows.item(i).nome_servico;
 
                 } catch (DOMException) {
-                    alert("error");}
+                    alert("error");
+                }
                 ListaAgendamento[i] = agendamento;
 
             }
             mostraSegundaTela(ListaAgendamento);
-            
+
 
         }, errorDB);
     });
 
+    db.transaction(function selectAll(tx) {
+        tx.executeSql('SELECT * FROM tb_agendamentos WHERE fk_id_servico = (SELECT id_servico FROM tb_servicos WHERE fk_id_pessoa_prestador = ?)', [idUsuarioLogado], function select(tx, results) {
+
+            var len = results.rows.length;
+            for (var i = 0; i < len; i++) {
+
+                var agendamento = new Agendamento();
+
+                try {
+                    agendamento.id_agendamento = results.rows.item(i).id_agendamento;
+                    agendamento.fk_id_servico = results.rows.item(i).fk_id_servico;
+                    agendamento.fk_id_pessoa_consumidor = results.rows.item(i).fk_id_pessoa_consumidor;
+                    agendamento.nome_consumido = results.rows.item(i).nome_consumidor;
+                    agendamento.horario_dia_agendamento = results.rows.item(i).horario_dia_agendamento;
+                    agendamento.local_agendamento = results.rows.item(i).local_agendamento;
+                    agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
+                    agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
+                    agendamento.nome_servico = results.rows.item(i).nome_servico;
+
+                } catch (DOMException) {
+                    alert("error");
+                }
+                ListaMeusAgendamento[i] = agendamento;
+
+            }
+            mostraSegundaTelaDois(ListaMeusAgendamento);
+
+        }, errorDB);
+    });
 }

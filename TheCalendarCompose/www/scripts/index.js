@@ -102,7 +102,8 @@ function validarCamposAgendamento(agendar) {
 
 }
 
-//IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: MEUS AGENDAMENTOS
+//IMPLEMENTAÇÃO DAS AÇÕES DA 2 ABA: 
+//MEUS AGENDAMENTOS -> MEUS PRESTADORES
 function mostraSegundaTela(ListaAgendamento) {
     $('#pagina-agendamentos').addClass('page-active');
     
@@ -118,6 +119,32 @@ function mostraSegundaTela(ListaAgendamento) {
             '<h1 class="mdl-card__title-text">' + ListaAgendamento[i].nome_servico + '</h1>' +
             '</div>' +
             '<div class="mdl-card__supporting-text">' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16))+'</div> ' +
+            '<div class="mdl-card__actions mdl-card--border">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
+            '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar </button>' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
+            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
+            '</div></div></div ></div>');
+
+    }
+}
+
+//MEUS AGENDAMENTOS -> MEUS PRESTADORES
+function mostraSegundaTelaDois(ListaAgendamento) {
+    $('#pagina-agendamentos').addClass('page-active');
+
+
+    $('#meusAgendamentosClientes').html('');
+
+    for (i = 0; i < ListaAgendamento.length; i++) {
+
+        $('#meusAgendamentosClientes').append('<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">' +
+            '<div class="agendamentoCard">' +
+            '<div class="mdl-card mdl-shadow--2dp">' +
+            '<div class="mdl-card__title">' +
+            '<h1 class="mdl-card__title-text">' + ListaAgendamento[i].nome_servico + '</h1>' +
+            '</div>' +
+            '<div class="mdl-card__supporting-text">' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16)) + '</div> ' +
             '<div class="mdl-card__actions mdl-card--border">' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
             '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar </button>' +
