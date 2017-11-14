@@ -248,3 +248,12 @@ function selecionarAgendamentos(idUsuarioLogado) {
         }, errorDB);
     });
 }
+
+//FUNÇÃO PARA CANCELAR UM AGENDAMENTO
+
+function cancelarAgendamento(idAgendamento) {
+    db.transaction(function deleteAgendamento(tx) {
+        tx.executeSql('DELETE FROM tb_agendamentos WHERE id_agendamento = ?', [idAgendamento]);
+    }, errorDB, sucessDB);
+    selecionarAgendamentos(UsuarioLogado.id_pessoa);
+}

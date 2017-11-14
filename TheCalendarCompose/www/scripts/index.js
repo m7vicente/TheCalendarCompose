@@ -120,7 +120,7 @@ function mostraSegundaTela(ListaAgendamento) {
             '</div>' +
             '<div class="mdl-card__supporting-text">Agendado para o dia: ' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ', ás ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16))+'</div> ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="btnCancelarAgendamento(' + ListaAgendamento[i].id_agendamento + ')">' +
             '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar Agendamento </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalhesMeusPrestadores(' + ("'" + ListaAgendamento[i].nome_consumido + "'") + ',' + ("'"+ListaAgendamento[i].doc_consumidor+"'") + ',' + ("'" + ListaAgendamento[i].nome_servico + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(10, 16) + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/") + "'") + ',' + ListaAgendamento[i].valor_agendamento + ')">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes Agendamento</button>' +
@@ -174,6 +174,15 @@ function detalhesMeusPrestadores(nomeAgendamento, doc ,nome, hora, dia, valor) {
     }, false);
 
 }
+
+
+//IMPLEMENTAÇÃO DO BATÃO DE CANCELAR AGENDAMENTO
+function btnCancelarAgendamento(idAgendamento) {
+    cancelarAgendamento(idAgendamento);
+}
+
+
+
 //MEUS AGENDAMENTOS -> MEUS PRESTADORES
 function mostraSegundaTelaDois(ListaAgendamento) {
     $('#pagina-agendamentos').addClass('page-active');
