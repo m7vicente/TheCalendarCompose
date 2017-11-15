@@ -57,9 +57,10 @@ function populateDB(tx) {
         'local_agendamento TEXT,'+
         'FOREIGN KEY (fk_id_pessoa_consumidor) REFERENCES tb_pessoa(id_pessoa),'+
         'FOREIGN KEY (fk_id_servico) REFERENCES tb_servicos (id_servico))');
-    tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
-    tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'HE GAY',' Matheus Guilherme de Araujo Vicente ')");
-    tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'Barbie',' A boneca que é a alegria da garotada ')");
+
+    //tx.executeSql("INSERT INTO tb_pessoa (nomeUsuario, senha, nome_pessoa, sexo ,nascimento, email, celular, endereco_rua, endereco_cidade, endereco_cep, endereco_estado) VALUES ('mc','he',' Matheus Guilherme de Araujo Vicente ',' Maculino ',' 1999-02-24 ',' mvicente@outlook.com.br ',' (11) 5121-3599 ',' Irmão nicolau da fonseca ',' São Paulo ', 03590-170,' SP ')");
+    //tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'HE GAY',' Matheus Guilherme de Araujo Vicente ')");
+    //tx.executeSql("INSERT INTO tb_servicos (fk_id_pessoa_prestador, nome_servico, descricao_servico) VALUES (1,'Barbie',' A boneca que é a alegria da garotada ')");
 
 }
 
@@ -135,9 +136,9 @@ function login(LoginUsuario) {
 
 //inserirNovo serviço e sua foto
 function adicionarServico(novoServico) {
-    alert("ID: " + novoServico.id_servico + ";  Prestador: " + novoServico.idPrestador + ";  nome Servico: " + novoServico.nomeServico + ";  Valor: " + novoServico.valor_servico + ";  Catoria: " + novoServico.categoria + ";  Ativo: " + novoServico.servico_ativo);
+    //alert("ID: " + novoServico.id_servico + ";  Prestador: " + novoServico.idPrestador + ";  nome Servico: " + novoServico.nomeServico + ";  Valor: " + novoServico.valor_servico + ";  Catoria: " + novoServico.categoria + ";  Ativo: " + novoServico.servico_ativo + "; Local Servico" + novoServico.local_servico );
     db.transaction(function InserirServicoDB(tx) {
-        tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria) VALUES (?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria]);
+        tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria, local_servico) VALUES (?,?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria, novoServico.local_servico]);
         tx.executeSql('INSERT INTO tb_foto_servico (fk_id_servico, imagem_servico) VALUES (last_insert_rowid(), ?)', [novoServico.imagem]);
     }, errorDB, sucessDB);
 }
@@ -161,7 +162,7 @@ function procurarMeusServicos(id_usuarioLogado) {
                 servicos.valor_servico = results.rows.item(i).valor_servico;
                 servicos.servico_ativo = results.rows.item(i).servico_ativo;
                 servicos.categoria = results.rows.item(i).categoria;
- 
+                servicos.local_servico = results.rows.item(i).local_servico;
 
             } catch (DOMException) { }
             ListaServicos[i] = servicos;
@@ -198,6 +199,7 @@ function criarPrimeiraTela(){
                     servicos.valor_servico = results.rows.item(i).valor_servico;
                     servicos.servico_ativo = results.rows.item(i).servico_ativo;
                     servicos.categoria = results.rows.item(i).categoria;
+                    servicos.local_servico = results.rows.item(i).local_servico;
 
 
                 } catch (DOMException) { }
@@ -214,8 +216,8 @@ function criarPrimeiraTela(){
 //FUNÇÃO PARA INSERIR AGENDAMENTOS NO BANCO DE DADOS
 
 function agendarServico(agendar) {
- db.transaction(function novoAgendamento(tx) {
-     tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor, nome_servico) VALUES (?,?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor, agendar.nome_servico]);                                               
+    db.transaction(function novoAgendamento(tx) {
+        tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor, nome_servico, local_agendamento) VALUES (?,?,?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor, agendar.nome_servico, agendar.local_agendamento]);                                               
     }, errorDB, sucessDB);
  selecionarAgendamentos(agendar.fk_id_pessoa_consumidor);
 }

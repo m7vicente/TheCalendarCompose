@@ -36,7 +36,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
             '</div>' +
             '<div class="mdl-card__supporting-text">' + ListaTodosServicos[i].descricao_servico + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ',' + ("'" + ListaTodosServicos[i].nomeServico + "'") + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ',' + ("'" + ListaTodosServicos[i].nomeServico + "'") + ',' + ("'" + ListaTodosServicos[i].local_servico + "'") + ')">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
@@ -46,7 +46,7 @@ function mostraPrimeiraTela(ListaTodosServicos) {
 }
 
 //função responsavel por alterar para a tela de agendamento de servico
-function telaDeAgendamento(idServico, valorServico, nome_servico) {
+function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico) {
     if (UsuarioLogado.id_pessoa == null) {
 
         showToast("Realize login para agendar um serviço");
@@ -68,7 +68,7 @@ function telaDeAgendamento(idServico, valorServico, nome_servico) {
             agendar.horario_dia_agendamento = ($('#dataReserva').val().split("T").join(" "));
             agendar.doc_consumidor = $('#identidade').val();
             agendar.nome_servico = nome_servico;
-
+            agendar.local_agendamento = local_servico;
             
             if (validarCamposAgendamento(agendar)) {
                 agendarServico(agendar);
@@ -231,7 +231,7 @@ function preencherTelaServicos(ListaServicos) {
             '<div class="servicoCard-descricao"></div>' + ListaServicos[i].descricao_servico + '</div>' +
             '<div class="mdl-card__actions mdl-card--border">' +
 
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="servico[' + ListaServicos[i].idServico + ']" name="btnEditar" onclick="editarServico(' + ListaServicos[i].idServico + ',' + ListaServicos[i].idPrestador + ',' + ("'" + ListaServicos[i].nomeServico + "'") + ',' + ("'" + ListaServicos[i].descricao_servico + "'") + ',' + ("'" + ListaServicos[i].categoria + "'") + ',' + ListaServicos[i].valor_servico + ',' + ListaServicos[i].servico_ativo + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="servico[' + ListaServicos[i].idServico + ']" name="btnEditar" onclick="editarServico(' + ListaServicos[i].idServico + ',' + ListaServicos[i].idPrestador + ',' + ("'" + ListaServicos[i].nomeServico + "'") + ',' + ("'" + ListaServicos[i].descricao_servico + "'") + ',' + ("'" + ListaServicos[i].categoria + "'") + ',' + ListaServicos[i].valor_servico + ',' + ListaServicos[i].servico_ativo + ',' + ("'"+ListaServicos[i].local_servico+"'") + ')">' +
             '<i class="material-icons">build</i> Editar' +
             '</button>' +
 
@@ -243,19 +243,20 @@ function preencherTelaServicos(ListaServicos) {
 
 }
 
-function editarServico(idServico, idPrestador, nomeServico, descricao_servico, categoria, valor_servico, servico_ativo, imagem) {
+function editarServico(idServico, idPrestador, nomeServico, descricao_servico, categoria, valor_servico, servico_ativo, local ,imagem) {
     
     $('#tela_servicos').removeClass('page-active');
     $('#tela-cadastro-servico').addClass('page-active');
     
     $('#NomeNovoServico').val(nomeServico);
     $('#descricaoNovoServico').val(descricao_servico);
+    $('#novoServico.local_servico').val(local);
     $('#ValorNovoServico').val(valor_servico);
     $('#categoriaNovoServico').val(categoria);
 
     $('#btnCadastrarNovoServico').click(function deletarAnterior() {
         deletarServico(idServico);
-        //showToast("Alerado com Sucesso");
+        showToast("Alterado com Sucesso");
     });
     
 }
@@ -270,6 +271,7 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     novoServico.idPrestador = UsuarioLogado.id_pessoa;
     novoServico.nomeServico = $('#NomeNovoServico').val();
     novoServico.descricao_servico = $('#descricaoNovoServico').val();
+    novoServico.local_servico = $('#enderecoNovoServico').val();
     novoServico.valor_servico = $('#ValorNovoServico').val();
     novoServico.servico_ativo = true;
     novoServico.categoria = $('#categoriaNovoServico').val();
@@ -300,8 +302,11 @@ function ValidarServico(novoServico) {
     } else if (novoServico.categoria == '') {
         showToast("Insira uma categoria");
         return false;
+    } else if (novoServico.local_servico == '') {
+        showToast("Serviço necessida de um endereço");
+        return false;
     } else {
-        return true;
+          return true;
     }
 }
 
