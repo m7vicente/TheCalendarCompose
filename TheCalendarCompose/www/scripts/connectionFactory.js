@@ -187,7 +187,7 @@ function deletarServico(idServico) {
 //FUNÇÃO PARA SELECIONAR TODOS OS SERVIÇOS DO BANCO
 function criarPrimeiraTela(){
     db.transaction(function selectAll(tx) {
-        tx.executeSql('SELECT S.*, F.imagem_servico FROM tb_servicos AS S JOIN tb_foto_servico AS F ON S.id_servico = F.fk_id_servico',[], function select(tx, results) {
+        tx.executeSql('SELECT * FROM tb_servicos',[], function select(tx, results) {
             var ListaServicos = [];
 
             var len = results.rows.length;
@@ -202,7 +202,6 @@ function criarPrimeiraTela(){
                     servicos.servico_ativo = results.rows.item(i).servico_ativo;
                     servicos.categoria = results.rows.item(i).categoria;
                     servicos.local_servico = results.rows.item(i).local_servico;
-                    servicos.foto = results.rows.item(i).imagem_servico;
 
 
                 } catch (DOMException) { }
