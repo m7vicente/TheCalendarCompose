@@ -19,7 +19,7 @@ function alterarTela() {
     });
     }
 alterarTela();
-//IMPLEMENTAÇÃO DAS AÇÕES DA 1 ABA: ACHAR SERVIÇO
+//IMPLEMENTAÇÃO DAS AÇÕES DA 1 ABA: CATALOGO DE SERVIÇOS
 
 //função responsavel por gerar conteudo dinamico na tela inicial do app, 
 function mostraPrimeiraTela(ListaTodosServicos) {
@@ -38,11 +38,54 @@ function mostraPrimeiraTela(ListaTodosServicos) {
             '<div class="mdl-card__actions mdl-card--border">' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="telaDeAgendamento(' + ListaTodosServicos[i].idServico + ',' + ListaTodosServicos[i].valor_servico + ',' + ("'" + ListaTodosServicos[i].nomeServico + "'") + ',' + ("'" + ListaTodosServicos[i].local_servico + "'") + ')">' +
             '<i class="material-icons">check_circle</i> Agendar </button>' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalharParaAgendar('+ ("'" + ListaTodosServicos[i].nomeServico + "'") + ',' + ("'" + ListaTodosServicos[i].descricao_servico + "'") + ',' + ("'" + ListaTodosServicos[i].valor_servico + "'") + ',' + ("'" + ListaTodosServicos[i].categoria + "'") + ',' + ("'" + ListaTodosServicos[i].local_servico + "'") + ')">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
             '</div></div></div ></div>');
 
     }
+}
+
+function detalharParaAgendar(nomeServico, descricao, valor, categoria, local) {
+    $('#servicos').removeClass('page-active');
+    $('#tela-detalhes').addClass('page-active');
+
+    $('#tela-detalhes').html('');
+
+    $('#tela-detalhes').append('<ul class="demo-list-icon mdl-list">' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">room_service</i>Serviço: ' + nomeServico +
+        '</span>' +
+        '</li >' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">attach_money</i> Valor : R$' + valor +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">place</i> Local : ' + local +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">format_list_bulleted</i> Tipo de Serviço : ' + categoria +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">description</i> Sobre : ' + descricao +
+        '</span>' +
+        '</li>' +
+        '</ul>');
+
+
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+        $('#tela-detalhes').removeClass('page-active');
+        $('#servicos').addClass('page-active');
+        return;
+    }, false);
 }
 
 //função responsavel por alterar para a tela de agendamento de servico
@@ -450,6 +493,8 @@ $('#RealizarLogin').click(function realizarLogin() {
 
     if (UsuarioEntrando.nomeUsuario != '' || UsuarioEntrando.senha != '') {
         login(UsuarioEntrando);
+    } else {
+        invalido();
     }
 });
 
