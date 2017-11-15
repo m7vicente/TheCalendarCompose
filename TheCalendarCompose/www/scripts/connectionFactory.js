@@ -247,6 +247,7 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
                     agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
                     agendamento.nome_servico = results.rows.item(i).nome_servico;
+                    agendamento.local_agendamento = results.rows.item(i).local_agendamento;
 
                 } catch (DOMException) {
                     alert("error");
@@ -278,6 +279,7 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.valor_agendamento = results.rows.item(i).valor_agendamento;
                     agendamento.doc_consumidor = results.rows.item(i).doc_consumidor;
                     agendamento.nome_servico = results.rows.item(i).nome_servico;
+                    agendamento.local_agendamento = results.rows.item(i).local_agendamento;
 
                 } catch (DOMException) {
                     alert("error");

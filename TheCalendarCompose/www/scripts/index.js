@@ -122,14 +122,14 @@ function mostraSegundaTela(ListaAgendamento) {
             '<div class="mdl-card__actions mdl-card--border">' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="btnCancelarAgendamento(' + ListaAgendamento[i].id_agendamento + ')">' +
             '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar Agendamento </button>' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalhesMeusPrestadores(' + ("'" + ListaAgendamento[i].nome_consumido + "'") + ',' + ("'"+ListaAgendamento[i].doc_consumidor+"'") + ',' + ("'" + ListaAgendamento[i].nome_servico + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(10, 16) + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/") + "'") + ',' + ListaAgendamento[i].valor_agendamento + ')">' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalhesMeusPrestadores(' + ("'" + ListaAgendamento[i].nome_consumido + "'") + ',' + ("'" + ListaAgendamento[i].doc_consumidor + "'") + ',' + ("'" + ListaAgendamento[i].nome_servico + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(10, 16) + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/") + "'") + ',' + ListaAgendamento[i].valor_agendamento + ',' + ("'" +ListaAgendamento[i].local_agendamento +"'")+')">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes Agendamento</button>' +
             '</div></div></div ></div>');
 
     }
 }
 
-function detalhesMeusPrestadores(nomeAgendamento, doc ,nome, hora, dia, valor) {
+function detalhesMeusPrestadores(nomeAgendamento, doc ,nome, hora, dia, valor, local) {
     $('#meusPrestadores').removeClass('page-active');
     $('#detalhesPrestadores').addClass('page-active');
     $('#detalhesPrestadores').html('');
@@ -162,6 +162,11 @@ function detalhesMeusPrestadores(nomeAgendamento, doc ,nome, hora, dia, valor) {
         '<li class="mdl-list__item">' +
         '<span class="mdl-list__item-primary-content">' +
         '<i class="material-icons mdl-list__item-icon">attach_money</i> Valor : R$' + valor +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">place</i> Local : '+ local +
         '</span>' +
         '</li>' +
         '</ul>');
