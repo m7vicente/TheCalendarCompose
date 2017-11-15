@@ -141,6 +141,7 @@ function adicionarServico(novoServico) {
         tx.executeSql('INSERT INTO tb_servicos(fk_id_pessoa_prestador , nome_servico , descricao_servico , valor_servico , servico_ativo , categoria, local_servico) VALUES (?,?,?,?,?,?,?)', [novoServico.idPrestador, novoServico.nomeServico, novoServico.descricao_servico, novoServico.valor_servico, novoServico.servico_ativo, novoServico.categoria, novoServico.local_servico]);
         tx.executeSql('INSERT INTO tb_foto_servico (fk_id_servico, imagem_servico) VALUES (last_insert_rowid(), ?)', [novoServico.imagem]);
     }, errorDB, sucessDB);
+    criarPrimeiraTela();
 }
 
 //função para selecionar servicos de usuario logado
@@ -180,6 +181,7 @@ function deletarServico(idServico) {
         tx.executeSql('DELETE FROM tb_servicos WHERE id_servico = ?', [idServico]);
     }, errorDB, sucessDB);
     procurarMeusServicos(UsuarioLogado.id_pessoa);
+    criarPrimeiraTela();
 }
 
 //FUNÇÃO PARA SELECIONAR TODOS OS SERVIÇOS DO BANCO
@@ -219,7 +221,8 @@ function agendarServico(agendar) {
     db.transaction(function novoAgendamento(tx) {
         tx.executeSql('INSERT INTO tb_agendamentos (fk_id_servico,fk_id_pessoa_consumidor, nome_consumidor, horario_dia_agendamento, valor_agendamento, doc_consumidor, nome_servico, local_agendamento) VALUES (?,?,?,?,?,?,?,?)', [agendar.fk_id_servico, agendar.fk_id_pessoa_consumidor, agendar.nome_consumidor, agendar.horario_dia_agendamento, agendar.valor_agendamento, agendar.doc_consumidor, agendar.nome_servico, agendar.local_agendamento]);                                               
     }, errorDB, sucessDB);
- selecionarAgendamentos(agendar.fk_id_pessoa_consumidor);
+    selecionarAgendamentos(agendar.fk_id_pessoa_consumidor);
+    criarPrimeiraTela();
 }
 
 
