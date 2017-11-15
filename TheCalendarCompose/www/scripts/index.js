@@ -201,19 +201,67 @@ function mostraSegundaTelaDois(ListaAgendamento) {
             '<div class="agendamentoCard">' +
             '<div class="mdl-card mdl-shadow--2dp">' +
             '<div class="mdl-card__title">' +
-            '<h1 class="mdl-card__title-text">' + ListaAgendamento[i].nome_servico + '</h1>' +
+            '<h1 class="mdl-card__title-text"> Dia:' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' , ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16)) + '</h1>' +
             '</div>' +
-            '<div class="mdl-card__supporting-text">' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16)) + '</div> ' +
+            '<div class="mdl-card__supporting-text">Cliente: ' + ListaAgendamento[i].nome_consumido + ', Serviço: '+ ListaAgendamento[i].nome_servico  + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effect">' +
-            '<i class="material-icons mdl-color-text--red-A700">cancel</i> Cancelar </button>' +
-            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec onclick="">' +
-            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes</button>' +
+            '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalhesMeusClientes(' + ("'" + ListaAgendamento[i].nome_consumido + "'") + ',' + ("'" + ListaAgendamento[i].doc_consumidor + "'") + ',' + ("'" + ListaAgendamento[i].nome_servico + "'") + ',' + ("'" + ListaAgendamento[i].valor_agendamento + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/") + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(10, 16) + "'") +')">' +
+            '<i id="iconDetalhes" class="material-icons">details</i> Detalhes Para Atendimento</button>' +
             '</div></div></div ></div>');
 
     }
 }
 
+
+//DETALHES MEUS CLIENTES
+function detalhesMeusClientes(nomeConsumidor, doc, nomeServico, valor, hora, dia) {
+
+    $('#meusClientes').removeClass('page-active');
+    $('#detalhesClientes').addClass('page-active');
+
+    $('#detalhesClientes').html('');
+
+    $('#detalhesClientes').append('<ul class="demo-list-icon mdl-list">' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">verified_user</i>Em nome: ' + nomeConsumidor +
+        '</span>' +
+        '</li >' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">credit_card</i>Documento: ' + doc +
+        '</span>' +
+        '</li >' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">attach_money</i> Valor Inicial : R$' + valor +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">room_service</i>Serviço: ' + nomeServico +
+        '</span>' +
+        '</li >' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">today</i>Data: ' + dia +
+        '</span>' +
+        '</li>' +
+        '<li class="mdl-list__item">' +
+        '<span class="mdl-list__item-primary-content">' +
+        '<i class="material-icons mdl-list__item-icon">alarm_on</i>Horario: ' + hora +
+        '</span>' +
+        '</li>' +
+        '</ul>');
+
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+        $('#detalhesClientes').removeClass('page-active');
+        $('#meusClientes').addClass('page-active');
+        return;
+    }, false);
+
+}
 
 
 
