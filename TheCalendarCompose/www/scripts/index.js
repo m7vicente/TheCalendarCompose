@@ -7,7 +7,7 @@ UsuarioLogado = new Usuario();
 
 
 //para carregar no navegador 
-connectionFactory();
+//connectionFactory();
 
 // Função que realiza troca de telas
 function alterarTela() {
@@ -371,11 +371,11 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     novoServico.valor_servico = $('#ValorNovoServico').val();
     novoServico.servico_ativo = true;
     novoServico.categoria = $('#categoriaNovoServico').val();
-    novoServico.imagem = document.getElementById('imagemNovoServico').files[0];
+    //novoServico.imagem = document.getElementById('imagemNovoServico').files[0];
 
     if (ValidarServico(novoServico) == true) {
         adicionarServico(novoServico);
-        //showToast("Adiconado com Sucesso !");
+        showToast("Adiconado com Sucesso !");
         $('#tela-cadastro-servico').removeClass('page-active');
         criarTela(UsuarioLogado);
     }
@@ -448,7 +448,7 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     
     if (validarCadastro(NovoConsumidor) == true) {
         inserirUsuario(NovoConsumidor);
-        //showToast("Validado");
+        showToast("Validado");
         $('#tela-cadastro').removeClass('page-active');
         $('#tela-login').addClass('page-active');
     }
@@ -499,7 +499,7 @@ $('#RealizarLogin').click(function realizarLogin() {
 });
 
 function invalido() {
-    //showToast("Usuario ou senha incorretos ");
+    showToast("Usuario ou senha incorretos ");
 }
 
 

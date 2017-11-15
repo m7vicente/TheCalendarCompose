@@ -66,7 +66,7 @@ function populateDB(tx) {
 
 // errorDB: é chamada em qualquer função que realize um transição com o banco. ela somente é chamada quando a um erro na execução do comando, alertando qual foi o erro.
 function errorDB(err) {
-    alert("erro: " + err.code);
+    showToast("erro: " + err.code);
 }
 
 //sucessDB: é igual a errorDB, porém é chamada quando o comando sql é realizado com sucesso
@@ -165,7 +165,9 @@ function procurarMeusServicos(id_usuarioLogado) {
                 servicos.categoria = results.rows.item(i).categoria;
                 servicos.local_servico = results.rows.item(i).local_servico;
 
-            } catch (DOMException) { }
+            } catch (DOMException) {
+                showToast("Você ainda não adicionou nenhum serviço");
+            }
             ListaServicos[i] = servicos;
             
         }
@@ -204,7 +206,9 @@ function criarPrimeiraTela(){
                     servicos.local_servico = results.rows.item(i).local_servico;
 
 
-                } catch (DOMException) { }
+                } catch (DOMException) {
+                    showToast("Nunhum serviço encontrado");
+                }
                 ListaServicos[i] = servicos;
 
             }
@@ -253,7 +257,7 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.local_agendamento = results.rows.item(i).local_agendamento;
 
                 } catch (DOMException) {
-                    alert("error");
+                    showToast("Nenhum Agendamento encontrado");
                 }
                 ListaAgendamento[i] = agendamento;
 
@@ -285,7 +289,7 @@ function selecionarAgendamentos(idUsuarioLogado) {
                     agendamento.local_agendamento = results.rows.item(i).local_agendamento;
 
                 } catch (DOMException) {
-                    alert("error");
+                    showToast("Não Nunhum novo Cliente");
                 }
                 ListaMeusAgendamento[i] = agendamento;
 
