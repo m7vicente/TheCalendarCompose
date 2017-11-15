@@ -90,7 +90,7 @@ function detalharParaAgendar(nomeServico, descricao, valor, categoria, local) {
 
 //função responsavel por alterar para a tela de agendamento de servico
 function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico) {
-    if (UsuarioLogado.id_pessoa == null) {
+    if (UsuarioLogado.id_pessoa === null) {
 
         showToast("Realize login para agendar um serviço");
     }
@@ -127,15 +127,15 @@ function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico)
 }
 
 function validarCamposAgendamento(agendar) {
-    if (agendar.nome_consumidor == '') {
+    if (agendar.nome_consumidor === '') {
         showToast("Insira o nome da pessoa que irá ultilizar a reserva");
         return false;
     }
-    if (agendar.horario_dia_agendamento == '') {
+    if (agendar.horario_dia_agendamento === '') {
         showToast("Insira o horario que você predende ser atendido");
         return false;
     }
-    if (agendar.doc_consumidor == '') {
+    if (agendar.doc_consumidor === '') {
         showToast("Insira um RG ou CPF da pessoa ultilizara a reserva");
         return false;
     }
@@ -373,7 +373,7 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     novoServico.categoria = $('#categoriaNovoServico').val();
     //novoServico.imagem = document.getElementById('imagemNovoServico').files[0];
 
-    if (ValidarServico(novoServico) == true) {
+    if (ValidarServico(novoServico) === true) {
         adicionarServico(novoServico);
         showToast("Adiconado com Sucesso !");
         $('#tela-cadastro-servico').removeClass('page-active');
@@ -386,19 +386,19 @@ $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
 //Função para validar os campos do serviço a ser adicionado
 function ValidarServico(novoServico) {
        
-    if (novoServico.nomeServico == '') {
+    if (novoServico.nomeServico === '') {
         showToast("Insira um nome");
         return false;
-    } else if (novoServico.descricao_servico == '') {
+    } else if (novoServico.descricao_servico === '') {
         showToast("Insira uma descrição")
         return false;
-    } else if (novoServico.valor_servico == '' || novoServico.valor_servico == 0) {
+    } else if (novoServico.valor_servico === '' || novoServico.valor_servico === 0) {
         showToast("Insira o valor do serviço");
         return false;
-    } else if (novoServico.categoria == '') {
+    } else if (novoServico.categoria === '') {
         showToast("Insira uma categoria");
         return false;
-    } else if (novoServico.local_servico == '') {
+    } else if (novoServico.local_servico === '') {
         showToast("Serviço necessida de um endereço");
         return false;
     } else {
@@ -444,9 +444,9 @@ $("#EnviarCadastro").click(function inserirRegistros() {
     NovoConsumidor.Cep = $('#CepUsuario').val();
     NovoConsumidor.data_cadastro = new Date();
 
-    alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.nomePessoa + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
+    //alert(NovoConsumidor.nomeUsuario + " , " + NovoConsumidor.senha + " , " + NovoConsumidor.sexo + " , " + NovoConsumidor.aniversario + " , " + NovoConsumidor.nomePessoa + " , " + NovoConsumidor.Email + " , " + NovoConsumidor.telefone + " , " + NovoConsumidor.RuaUsuario + " , " + NovoConsumidor.UF + " , " + NovoConsumidor.Cidade + " , " + NovoConsumidor.Cep);
     
-    if (validarCadastro(NovoConsumidor) == true) {
+    if (validarCadastro(NovoConsumidor) === true) {
         inserirUsuario(NovoConsumidor);
         showToast("Validado");
         $('#tela-cadastro').removeClass('page-active');
@@ -458,26 +458,26 @@ $("#EnviarCadastro").click(function inserirRegistros() {
 //validarCadastro: ultilizado para impedir que seja realizado cadastros sem nunhuma informação
 function validarCadastro(NovoConsumidor) {
 
-    if (NovoConsumidor.nomeUsuario == '') {
+    if (NovoConsumidor.nomeUsuario === '') {
         return false;
-    } else if (NovoConsumidor.senha != $('#SenhaUsuarioConfirma').val()) {
+    } else if (NovoConsumidor.senha !== $('#SenhaUsuarioConfirma').val()) {
         showToast("Senhas não Concidem");
         return false;
-    } else if (NovoConsumidor.aniversario == '') {
+    } else if (NovoConsumidor.aniversario === '') {
         return false;
-    } else if (NovoConsumidor.NomeCompleto == '') {
+    } else if (NovoConsumidor.NomeCompleto === '') {
         return false;
-    } else if (NovoConsumidor.Email == '') {
+    } else if (NovoConsumidor.Email === '') {
         return false;
-    } else if (NovoConsumidor.telefone == '') {
+    } else if (NovoConsumidor.telefone === '') {
         return false;
-    } else if (NovoConsumidor.RuaUsuario == '') {
+    } else if (NovoConsumidor.RuaUsuario === '') {
         return false;
-    } else if (NovoConsumidor.UF == '') {
+    } else if (NovoConsumidor.UF === '') {
         return false;
-    } else if (NovoConsumidor.Cidade == '') {
+    } else if (NovoConsumidor.Cidade === '') {
         return false;
-    } else if (NovoConsumidor.Cep == '') {
+    } else if (NovoConsumidor.Cep === '') {
         return false;
     } else
         return true;
@@ -491,7 +491,7 @@ $('#RealizarLogin').click(function realizarLogin() {
     UsuarioEntrando.nomeUsuario = $('#user').val();
     UsuarioEntrando.senha = $('#pass').val();
 
-    if (UsuarioEntrando.nomeUsuario != '' || UsuarioEntrando.senha != '') {
+    if (UsuarioEntrando.nomeUsuario !== '' || UsuarioEntrando.senha !== '') {
         login(UsuarioEntrando);
     } else {
         invalido();
