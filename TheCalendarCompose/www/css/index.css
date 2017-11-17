@@ -13,6 +13,10 @@
     display: block;
 }
 
+.hidden {
+    display:none;
+}
+
 
 .mdl-cell {
     height: 500%;
