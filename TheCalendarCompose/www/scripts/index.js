@@ -99,6 +99,12 @@ function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico)
         $('#servicos').removeClass('page-active');
         $('#form-agendar').addClass('page-active');
 
+        if (local_servico == 'ND') {
+            $('#endereco-domicilio').removeClass('hidden');
+            local_servico = $('#enderecoDomicilio').val();
+        } else {
+            $('#endereco-domicilio').addClass('hidden');
+        }
 
         $('#AgendarServico').click(function PrepararAgendamentoServico() {
 
@@ -112,15 +118,18 @@ function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico)
             agendar.doc_consumidor = $('#identidade').val();
             agendar.nome_servico = nome_servico;
             agendar.local_agendamento = local_servico;
-            
+
             if (validarCamposAgendamento(agendar)) {
 
                 validarHorario(agendar);
-              
+
             }
 
         });
+        
+
     }
+
 }
 
 function validarCamposAgendamento(agendar) {
@@ -358,16 +367,33 @@ function editarServico(idServico, idPrestador, nomeServico, descricao_servico, c
 
 
 //FUNÇÃO PARA A INSERÇÃO DE UM NOVO SERVICO
+$('input[name=home-options]').click(function verificarLocal() {
+
+    if ($('input[name=home-options]:checked').val() !== 'sim') {
+        $('#endereco_novo_servico').removeClass('hidden');
+    }
+    if ($('input[name=home-options]:checked').val() === 'sim') {
+        $('#endereco_novo_servico').addClass('hidden');
+    }
+});
+
+
 $('#btnCadastrarNovoServico').click(function inserirNovoServico(){
     var novoServico = new Servico();
     
     novoServico.idPrestador = UsuarioLogado.id_pessoa;
     novoServico.nomeServico = $('#NomeNovoServico').val();
     novoServico.descricao_servico = $('#descricaoNovoServico').val();
-    novoServico.local_servico = $('#enderecoNovoServico').val();
     novoServico.valor_servico = $('#ValorNovoServico').val();
     novoServico.servico_ativo = true;
     novoServico.categoria = $('#categoriaNovoServico').val();
+
+    if ($('input[name=home-options]:checked').val() !== 'sim') {
+        novoServico.local_servico = $('#enderecoNovoServico').val();
+    } else {
+        novoServico.local_servico = "ND";
+    }
+    
     //novoServico.imagem = document.getElementById('imagemNovoServico').files[0];
 
     if (ValidarServico(novoServico) === true) {
@@ -395,8 +421,8 @@ function ValidarServico(novoServico) {
     } else if (novoServico.categoria === '') {
         showToast("Insira uma categoria");
         return false;
-    } else if (novoServico.local_servico === '') {
-        showToast("Serviço necessida de um endereço");
+    } else if (novoServico.local_servico === '' && $('input[name=home-options]:checked').val() !== 'sim') {
+        showToast("È necessario o endereço");
         return false;
     } else {
           return true;

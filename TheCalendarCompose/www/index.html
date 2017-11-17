@@ -65,6 +65,14 @@
                                         </div>
                                     </div>
 
+                                    <!--Endereço Atendimento a domicilio-->
+                                    <div id="endereco-domicilio" class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet hidden">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
+                                            <input class="mdl-textfield__input" type="text" id="enderecoDomicilio">
+                                            <label class="mdl-textfield__label" for="enderecoDomicilio">Endereço</label>
+                                        </div>
+                                    </div>
+
                                     <!--Data da reserva-->
                                     <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
@@ -208,8 +216,20 @@
                                     </div>
                                 </div>
 
-                                <!--Endereço novo Servico-->
                                 <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+
+                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="home-option-1">
+                                        <input type="radio" id="home-option-1" class="mdl-radio__button" name="home-options" value="sim">
+                                        <span class="mdl-radio__label">Atendimento em Domicilio</span>
+                                    </label>
+                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="home-option-2">
+                                        <input type="radio" id="home-option-2" class="mdl-radio__button" name="home-options" value="não">
+                                        <span class="mdl-radio__label">Atendimento Local</span>
+                                    </label>
+                                </div>
+
+                                <!--Endereço novo Servico-->
+                                <div id="endereco_novo_servico" class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col-tablet hidden">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
                                         <input class="mdl-textfield__input" type="text" id="enderecoNovoServico">
                                         <label class="mdl-textfield__label" for="enderecoNovoServico">Endereço</label>
@@ -224,6 +244,7 @@
                                     </div>
                                 </div>
 
+                                
                                 <!--Imagem demo
 
                                 <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--1-col-tablet">
