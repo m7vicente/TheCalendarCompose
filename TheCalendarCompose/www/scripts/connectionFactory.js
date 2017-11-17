@@ -207,7 +207,7 @@ function criarPrimeiraTela(){
 
 
                 } catch (DOMException) {
-                    showToast("Nunhum serviço encontrado");
+                    showToast("Nenhum serviço encontrado");
                 }
                 ListaServicos[i] = servicos;
 
@@ -311,29 +311,41 @@ function cancelarAgendamento(idAgendamento) {
 
 //FUNÇÃO PARA VALIDAR UM HORARIO DE AGENDAMENTO
 function validarHorario(agendar) {
-
+    
     db.transaction(function dataAgendar(tx) {
         tx.executeSql('SELECT horario_dia_agendamento FROM tb_agendamentos WHERE fk_id_servico = ?', [agendar.fk_id_servico], function select(tx, results) {
-
+            
 
             var len = results.rows.length;
+
+            var disponivel = true;
+
             for (var i = 0; i < len; i++) {
                 var servicos = new Servico();
 
                 if (results.rows.item(i).horario_dia_agendamento === agendar.horario_dia_agendamento) {
-                    showToast("Dia ou Horario de serviço indisponivel");
+                    disponivel = false;
+                    break;
                 } else {
-
-                    agendarServico(agendar);
-
-                    $('#servicos').addClass('page-active');
-                    $('#form-agendar').removeClass('page-active');
-
-                    showToast("Agendado com Sucesso");
+                    disponivel = true;
                 }
-                               
 
             }
+
+            if (disponivel === true) {
+                agendarServico(agendar);
+
+                $('#servicos').addClass('page-active');
+                $('#form-agendar').removeClass('page-active');
+                                
+                showToast("Agendado com Sucesso");
+
+            } else if (disponivel === false){
+                showToast("Dia ou Horario de serviço indisponivel");
+            }
+                               
+
+            
         }, errorDB);
     });
 }
