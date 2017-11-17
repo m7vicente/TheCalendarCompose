@@ -243,7 +243,7 @@ function mostraSegundaTelaDois(ListaAgendamento) {
             '<div class="mdl-card__title">' +
             '<h1 class="mdl-card__title-text"> Dia:' + (ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/")) + ' , ' + (ListaAgendamento[i].horario_dia_agendamento.slice(10, 16)) + '</h1>' +
             '</div>' +
-            '<div class="mdl-card__supporting-text">Cliente: ' + ListaAgendamento[i].nome_consumido + ', Serviço: '+ ListaAgendamento[i].nome_servico  + '</div > ' +
+            '<div class="mdl-card__supporting-text">Cliente: ' + ListaAgendamento[i].nome_consumido + '</p> Serviço: '+ ListaAgendamento[i].nome_servico  + '</div > ' +
             '<div class="mdl-card__actions mdl-card--border">' +
             '<button class="mdl-button mdl-js-button mdl-js-ripple-effec" onclick="detalhesMeusClientes(' + ("'" + ListaAgendamento[i].nome_consumido + "'") + ',' + ("'" + ListaAgendamento[i].doc_consumidor + "'") + ',' + ("'" + ListaAgendamento[i].nome_servico + "'") + ',' + ("'" + ListaAgendamento[i].valor_agendamento + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(0, 10).split("-").reverse().join("/") + "'") + ',' + ("'" + ListaAgendamento[i].horario_dia_agendamento.slice(10, 16) + "'") +')">' +
             '<i id="iconDetalhes" class="material-icons">details</i> Detalhes Para Atendimento</button>' +
