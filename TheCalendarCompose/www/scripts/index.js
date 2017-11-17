@@ -1,13 +1,13 @@
 ﻿//Variaveis de usuario
 UsuarioLogado = new Usuario();
-
+UsuarioLogado.id_pessoa = null;
 //alert(user1.nomeUsuario);
 // Funções da aplicação
     document.addEventListener("deviceready", connectionFactory, false);
 
 
 //para carregar no navegador 
-//connectionFactory();
+connectionFactory();
 
 // Função que realiza troca de telas
 function alterarTela() {
@@ -90,7 +90,7 @@ function detalharParaAgendar(nomeServico, descricao, valor, categoria, local) {
 
 //função responsavel por alterar para a tela de agendamento de servico
 function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico) {
-    if (UsuarioLogado.id_pessoa === null) {
+    if (UsuarioLogado.id_pessoa === null || UsuarioLogado.id_pessoa === '') {
 
         showToast("Realize login para agendar um serviço");
     }
@@ -114,12 +114,9 @@ function telaDeAgendamento(idServico, valorServico, nome_servico, local_servico)
             agendar.local_agendamento = local_servico;
             
             if (validarCamposAgendamento(agendar)) {
-                agendarServico(agendar);
-                showToast("Agendado com Sucesso");
-                
-                $('#servicos').removeClass('page-active');
-                $('#form-agendar').addClass('page-active');
-                                
+
+                validarHorario(agendar);
+              
             }
 
         });
@@ -134,7 +131,7 @@ function validarCamposAgendamento(agendar) {
     if (agendar.horario_dia_agendamento === '') {
         showToast("Insira o horario que você predende ser atendido");
         return false;
-    }
+    } 
     if (agendar.doc_consumidor === '') {
         showToast("Insira um RG ou CPF da pessoa ultilizara a reserva");
         return false;
